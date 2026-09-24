@@ -76,31 +76,15 @@ a {
 
 .brand {
     display: flex;
-    gap: 12px;
     align-items: center;
 }
 
-.brand-mark {
-    width: 36px;
-    height: 36px;
-
-    border: 1px solid var(--gold);
-
-    display: grid;
-    place-items: center;
-
-    font: 600 13px var(--serif);
-}
-
-.brand strong {
-    font-size: 13px;
+.brand-logo {
+    width: 150px;
+    height: 52px;
+    object-fit: contain;
+    object-position: left center;
     display: block;
-}
-
-.brand small {
-    font-size: 8px;
-    letter-spacing: 0.25em;
-    color: var(--muted);
 }
 
 
