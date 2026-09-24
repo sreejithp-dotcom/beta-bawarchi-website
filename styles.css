@@ -14,7 +14,6 @@
     --gold: #a57d42;
     --paper: #f7f5ef;
     --white: #fff;
-
     --line: #ded9cf;
 
     --serif: "Playfair Display", Georgia, serif;
@@ -45,6 +44,10 @@ body {
 a {
     text-decoration: none;
     color: inherit;
+}
+
+img {
+    max-width: 100%;
 }
 
 
@@ -624,7 +627,7 @@ a {
 
 
 /* =========================================================
-   15. ENQUIRY SECTION
+   15. OLD ENQUIRY SECTION
 ========================================================= */
 
 .enquiry {
@@ -652,7 +655,7 @@ a {
 
 
 /* =========================================================
-   16. BOOKING FORM
+   16. OLD BOOKING FORM
 ========================================================= */
 
 .form {
@@ -720,15 +723,352 @@ a {
 
 
 /* =========================================================
-   18. TABLET / MOBILE
+   18. LOCATION + CONTACT + BOOKING ENQUIRY
+========================================================= */
+
+.location-enquiry {
+    padding: 90px 7vw;
+    background: var(--paper);
+}
+
+.location-enquiry-header {
+    max-width: 700px;
+    margin-bottom: 40px;
+}
+
+.location-enquiry-header .eyebrow {
+    margin-bottom: 12px;
+}
+
+.location-enquiry-header h2 {
+    font: 500 clamp(35px, 4vw, 56px) / 1.1 var(--serif);
+    margin: 8px 0 14px;
+}
+
+.location-enquiry-header p {
+    color: var(--muted);
+    max-width: 600px;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   LOCATION / ENQUIRY GRID
+========================================================= */
+
+.location-enquiry-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 28px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   MAP PANEL
+========================================================= */
+
+.map-panel {
+    background: var(--white);
+
+    border: 1px solid var(--line);
+
+    overflow: hidden;
+}
+
+.map-panel iframe {
+    width: 100%;
+    height: 450px;
+
+    display: block;
+
+    border: 0;
+}
+
+
+/* =========================================================
+   PROPERTY CONTACT CARD
+========================================================= */
+
+.property-contact-card {
+    padding: 30px;
+}
+
+.property-contact-card h3 {
+    font: 500 24px var(--serif);
+    margin: 0 0 24px;
+}
+
+
+/* Contact rows */
+
+.contact-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+
+    gap: 15px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.contact-item:last-of-type {
+    border-bottom: 0;
+}
+
+.contact-label {
+    font-size: 10px;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+}
+
+.contact-value {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.contact-value a {
+    color: var(--ink);
+}
+
+.contact-value a:hover {
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   MAP ACTION BUTTONS
+========================================================= */
+
+.map-actions {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 22px;
+
+    flex-wrap: wrap;
+}
+
+.map-actions a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 20px;
+
+    border: 1px solid var(--ink);
+
+    font-size: 11px;
+
+    letter-spacing: 0.08em;
+
+    text-transform: uppercase;
+
+    transition: 0.2s ease;
+}
+
+.map-actions a:hover {
+    background: var(--ink);
+    color: var(--white);
+}
+
+.map-actions .whatsapp-btn {
+    border-color: var(--gold);
+
+    background: var(--gold);
+
+    color: var(--white);
+}
+
+.map-actions .whatsapp-btn:hover {
+    background: var(--ink);
+
+    border-color: var(--ink);
+}
+
+
+/* =========================================================
+   DIRECT BOOKING FORM CARD
+========================================================= */
+
+.booking-form-card {
+    background: var(--white);
+
+    border: 1px solid var(--line);
+
+    padding: 40px;
+}
+
+.booking-form-card h3 {
+    font: 500 30px var(--serif);
+
+    margin: 0 0 10px;
+}
+
+.booking-form-card > p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    margin: 0 0 28px;
+}
+
+
+/* =========================================================
+   NEW BOOKING FORM
+========================================================= */
+
+.booking-form {
+    display: grid;
+
+    gap: 16px;
+}
+
+.booking-form label {
+    display: grid;
+
+    gap: 7px;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.1em;
+
+    color: var(--muted);
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid var(--line);
+
+    background: var(--paper);
+
+    color: var(--ink);
+
+    font-family: var(--sans);
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+.booking-form input:focus,
+.booking-form select:focus,
+.booking-form textarea:focus {
+    border-color: var(--gold);
+}
+
+.booking-form textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.booking-form button {
+    margin-top: 5px;
+
+    min-height: 48px;
+
+    border: 0;
+
+    background: var(--ink);
+
+    color: var(--white);
+
+    font-family: var(--sans);
+
+    font-size: 11px;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.booking-form button:hover {
+    background: var(--gold);
+}
+
+
+/* =========================================================
+   LOCATION INFORMATION STRIP
+========================================================= */
+
+.location-info-strip {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    margin-top: 28px;
+
+    border: 1px solid var(--line);
+
+    background: var(--white);
+}
+
+.location-info-strip div {
+    padding: 20px 24px;
+
+    border-right: 1px solid var(--line);
+}
+
+.location-info-strip div:last-child {
+    border-right: 0;
+}
+
+.location-info-strip strong {
+    display: block;
+
+    font: 500 18px var(--serif);
+
+    margin-bottom: 5px;
+}
+
+.location-info-strip span {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   19. TABLET / MOBILE
 ========================================================= */
 
 @media (max-width: 850px) {
+
+    /* Navigation */
 
     .nav a:not(.cta) {
         display: none;
     }
 
+
+    /* Main layouts */
 
     .hero,
     .property-hero,
@@ -738,25 +1078,29 @@ a {
     }
 
 
+    /* Homepage hero */
+
     .hero-img {
         min-height: 430px;
     }
 
 
+    /* Property hero */
+
     .property-photo {
         min-height: 430px;
     }
-
 
     .property-copy {
         padding: 70px 8vw;
     }
 
-
     .property-photo {
         order: -1;
     }
 
+
+    /* Property cards and rooms */
 
     .property-grid,
     .room-grid {
@@ -764,45 +1108,87 @@ a {
     }
 
 
+    /* Experiences and amenities */
+
     .experience-grid,
     .amenity-grid {
         grid-template-columns: 1fr 1fr;
     }
 
 
+    /* Stats */
+
     .stats {
         grid-template-columns: 1fr 1fr;
     }
 
 
+    /* Footer */
+
     .footer {
         grid-template-columns: 1fr;
     }
-
 
     .footer-contact {
         justify-self: start;
         text-align: left;
     }
 
-
     .footer-bottom {
         grid-column: 1;
     }
 
+
+    /* =====================================================
+       LOCATION / ENQUIRY MOBILE
+    ===================================================== */
+
+    .location-enquiry {
+        padding: 65px 6vw;
+    }
+
+    .location-enquiry-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .map-panel iframe {
+        height: 400px;
+    }
+
+    .booking-form-card {
+        padding: 30px;
+    }
+
+    .location-info-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .location-info-strip div {
+        border-right: 0;
+
+        border-bottom: 1px solid var(--line);
+    }
+
+    .location-info-strip div:last-child {
+        border-bottom: 0;
+    }
 }
 
 
 /* =========================================================
-   19. SMALL MOBILE
+   20. SMALL MOBILE
 ========================================================= */
 
 @media (max-width: 560px) {
+
+    /* General sections */
 
     .section {
         padding: 75px 6vw;
     }
 
+
+    /* Experiences / amenities / stats */
 
     .experience-grid,
     .amenity-grid,
@@ -811,18 +1197,75 @@ a {
     }
 
 
+    /* Old form */
+
     .two {
         grid-template-columns: 1fr;
     }
 
 
+    /* Header */
+
     .header {
         padding: 0 5vw;
     }
 
+    .brand-logo {
+        width: 135px;
+        height: 48px;
+    }
+
+
+    /* Dining */
 
     .dining-copy {
         padding: 65px 7vw;
     }
 
+
+    /* =====================================================
+       LOCATION / ENQUIRY SMALL MOBILE
+    ===================================================== */
+
+    .location-enquiry {
+        padding: 55px 5vw;
+    }
+
+    .location-enquiry-header {
+        margin-bottom: 30px;
+    }
+
+    .map-panel iframe {
+        height: 350px;
+    }
+
+    .property-contact-card {
+        padding: 24px;
+    }
+
+    .booking-form-card {
+        padding: 24px;
+    }
+
+    .booking-form-card h3 {
+        font-size: 27px;
+    }
+
+    .contact-item {
+        grid-template-columns: 1fr;
+
+        gap: 5px;
+    }
+
+    .map-actions {
+        flex-direction: column;
+    }
+
+    .map-actions a {
+        width: 100%;
+    }
+
+    .location-info-strip div {
+        padding: 18px 20px;
+    }
 }
