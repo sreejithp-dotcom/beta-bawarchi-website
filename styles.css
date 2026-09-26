@@ -586,14 +586,14 @@ img {
    with the Indraprastha room images above.
 */
 
-.serenity-room-1 {
+.room-photo.serenity-dummy-1 {
     background-image:
-        url("images/Serenity/Deluxe Room 1.png");
+        url("https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80");
 }
 
-.serenity-room-2 {
+.room-photo.serenity-dummy-2 {
     background-image:
-        url("images/Serenity/Super Deluxe.png");
+        url("https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80");
 }
 
 
