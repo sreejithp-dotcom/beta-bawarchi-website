@@ -1,4 +1,5 @@
-/* =========================================================
+
+  /* =========================================================
    BETA BAWARCHI GROUP
    MAIN WEBSITE STYLES
 ========================================================= */
@@ -514,7 +515,9 @@ img {
 }
 
 
-/* Room preview image */
+/* ---------------------------------------------------------
+   ROOM PREVIEW IMAGE
+--------------------------------------------------------- */
 
 .room-photo {
     height: 290px;
@@ -524,6 +527,7 @@ img {
 
 /* =========================================================
    HOTEL INDRAPRASTHA ROOM IMAGES
+   DO NOT CHANGE
 ========================================================= */
 
 
@@ -564,6 +568,32 @@ img {
 .room-photo.r5 {
     background-image:
         url("https://raw.githubusercontent.com/sreejithp-dotcom/beta-bawarchi-website/main/images/indraprastha/royale-suite.png");
+}
+
+
+/* =========================================================
+   SERENITY THE VILLA
+   ROOM IMAGES
+========================================================= */
+
+/*
+   Serenity has two room categories:
+
+   1. Deluxe AC
+   2. Super Deluxe AC
+
+   These use separate classes so they never interfere
+   with the Indraprastha room images above.
+*/
+
+.serenity-room-1 {
+    background-image:
+        url("images/Serenity/Deluxe Room 1.png");
+}
+
+.serenity-room-2 {
+    background-image:
+        url("images/Serenity/Super Deluxe.png");
 }
 
 
@@ -751,135 +781,6 @@ img {
     font-size: 14px;
 }
 
-
-/* =========================================================
-   GOOGLE GUEST REVIEWS
-========================================================= */
-
-.google-reviews {
-    background: var(--paper);
-}
-
-.google-reviews-head {
-    align-items: flex-end;
-}
-
-.google-reviews-head p {
-    max-width: 620px;
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.7;
-}
-
-.google-reviews-grid {
-    display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
-    gap: 28px;
-    align-items: stretch;
-}
-
-.google-rating-card,
-.google-review-card {
-    background: var(--white);
-    border: 1px solid var(--line);
-}
-
-.google-rating-card {
-    padding: 38px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 300px;
-}
-
-.google-rating-top,
-.google-review-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.google-label {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.google-stars,
-.review-stars {
-    letter-spacing: 0.08em;
-    font-size: 14px;
-}
-
-.google-rating-value {
-    font: 500 58px var(--serif);
-    line-height: 1;
-    margin-top: 28px;
-}
-
-.google-rating-meta {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-    color: var(--muted);
-    font-size: 12px;
-}
-
-.google-rating-note {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.7;
-    margin: 24px 0 22px;
-}
-
-.google-review-link {
-    display: inline-flex;
-    align-items: center;
-    width: fit-content;
-    color: var(--ink);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 5px;
-}
-
-.google-review-link:hover {
-    color: var(--gold);
-    border-color: var(--gold);
-}
-
-.google-review-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px;
-}
-
-.google-review-card {
-    padding: 30px;
-    min-height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.review-source {
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.google-review-placeholder {
-    margin: 32px 0 0;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.8;
-    max-width: 360px;
-}
 
 /* =========================================================
    LOCATION / ENQUIRY GRID
@@ -1378,14 +1279,6 @@ img {
 
     .booking-form-card h3 {
         font-size: 27px;
-    }
-
-    .google-reviews-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .google-review-list {
-        grid-template-columns: 1fr;
     }
 
     .contact-item {
