@@ -152,23 +152,72 @@ img {
 }
 
 .hero-img {
-    background:
-        linear-gradient(180deg, #0000, #0008),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=85")
-        center / cover;
-
     min-height: 620px;
     position: relative;
+    overflow: hidden;
+    background: #222;
 }
+
+
+/* =========================================================
+   HERO IMAGE SLIDES
+========================================================= */
+
+.hero-slide {
+    position: absolute;
+
+    inset: 0;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    opacity: 0;
+
+    transition: opacity 1.4s ease;
+
+    transform: scale(1.02);
+}
+
+
+/* Dark overlay */
+
+.hero-slide::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.55)
+        );
+}
+
+
+/* Active slide */
+
+.hero-slide.active {
+    opacity: 1;
+}
+
+
+/* Pachmarhi label */
 
 .hero-img span {
     position: absolute;
+
     left: 8%;
     bottom: 8%;
 
     color: white;
 
     font: 500 42px var(--serif);
+
+    z-index: 5;
 }
 
 
