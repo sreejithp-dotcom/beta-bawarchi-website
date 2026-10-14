@@ -105,7 +105,34 @@ img {
 }
 
 .nav .cta {
-    border-bottom: 1px solid var(--ink);
+    border: 1px solid var(--ink);
+    padding: 9px 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-book-now {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background: var(--ink);
+    color: var(--white);
+    border: 1px solid var(--ink);
+    font-size: 12px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-book-now:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--white);
+}
+
+.nav .cta:hover {
+    background: var(--ink);
+    color: var(--white);
 }
 
 
@@ -227,8 +254,9 @@ img {
 
 .buttons {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     margin-top: 25px;
+    flex-wrap: wrap;
 }
 
 .btn {
@@ -671,6 +699,45 @@ img {
 .photo-link {
     font-size: 11px;
     color: var(--gold);
+}
+
+.room-booking-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.room-book-btn,
+.room-enquire-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 18px;
+    border: 1px solid var(--ink);
+    font-size: 11px;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.room-book-btn {
+    background: var(--ink);
+    color: var(--white);
+}
+
+.room-book-btn:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+.room-enquire-btn {
+    background: transparent;
+    color: var(--ink);
+}
+
+.room-enquire-btn:hover {
+    background: var(--ink);
+    color: var(--white);
 }
 
 
@@ -1142,8 +1209,20 @@ img {
 
     /* Navigation */
 
-    .nav a:not(.cta) {
+    .nav a:not(.cta):not(.nav-book-now) {
         display: none;
+    }
+
+    .nav {
+        gap: 8px;
+        align-items: center;
+    }
+
+    .nav-book-now,
+    .nav .cta {
+        padding: 8px 10px;
+        font-size: 10px;
+        white-space: nowrap;
     }
 
 
@@ -1290,8 +1369,26 @@ img {
     }
 
     .brand-logo {
-        width: 135px;
-        height: 48px;
+        width: 112px;
+        height: 44px;
+    }
+
+    .nav {
+        gap: 6px;
+    }
+
+    .nav-book-now,
+    .nav .cta {
+        padding: 7px 8px;
+        font-size: 9px;
+    }
+
+    .buttons .btn {
+        padding: 12px 14px;
+    }
+
+    .room-booking-actions > a {
+        flex: 1;
     }
 
 
