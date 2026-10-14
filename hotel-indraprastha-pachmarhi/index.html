@@ -124,6 +124,15 @@
             </a>
 
             <a
+                class="nav-book-now"
+                href="https://letsbook.me/booking/hotelindraprasthaluxuria"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Book Now
+            </a>
+
+            <a
                 class="cta"
                 href="#enquiry"
             >
@@ -186,11 +195,19 @@
 
                     <a
                         class="btn dark"
-                        href="#enquiry"
+                        href="https://letsbook.me/booking/hotelindraprasthaluxuria"
+                        target="_blank"
+                        rel="noopener noreferrer"
                     >
-                        Book / Enquire
+                        Book Now
                     </a>
 
+                    <a
+                        class="btn"
+                        href="#enquiry"
+                    >
+                        Enquire
+                    </a>
 
                     <a
                         class="btn"
@@ -332,10 +349,15 @@
                             class="photo-link"
                             href="https://photos.app.goo.gl/joxrT8pEapy7Hz657"
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener"
                         >
                             View Google Photos →
                         </a>
+
+                        <div class="room-booking-actions">
+                            <a class="room-book-btn" href="https://letsbook.me/booking/hotelindraprasthaluxuria" target="_blank" rel="noopener noreferrer">Book Now</a>
+                            <a class="room-enquire-btn" href="#enquiry" data-enquire-room="Executive AC">Enquire</a>
+                        </div>
 
                     </div>
 
@@ -375,10 +397,15 @@
                             class="photo-link"
                             href="https://photos.app.goo.gl/zix45yWGaavqiqsR8"
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener"
                         >
                             View Google Photos →
                         </a>
+
+                        <div class="room-booking-actions">
+                            <a class="room-book-btn" href="https://letsbook.me/booking/hotelindraprasthaluxuria" target="_blank" rel="noopener noreferrer">Book Now</a>
+                            <a class="room-enquire-btn" href="#enquiry" data-enquire-room="Executive AC Front View">Enquire</a>
+                        </div>
 
                     </div>
 
@@ -417,10 +444,15 @@
                             class="photo-link"
                             href="https://photos.app.goo.gl/fzopvKJhnbesKAMU7"
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener"
                         >
                             View Google Photos →
                         </a>
+
+                        <div class="room-booking-actions">
+                            <a class="room-book-btn" href="https://letsbook.me/booking/hotelindraprasthaluxuria" target="_blank" rel="noopener noreferrer">Book Now</a>
+                            <a class="room-enquire-btn" href="#enquiry" data-enquire-room="Executive Luxury Balcony View">Enquire</a>
+                        </div>
 
                     </div>
 
@@ -459,10 +491,15 @@
                             class="photo-link"
                             href="https://photos.app.goo.gl/ZWGbk8RERpABM1NY7"
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener"
                         >
                             View Google Photos →
                         </a>
+
+                        <div class="room-booking-actions">
+                            <a class="room-book-btn" href="https://letsbook.me/booking/hotelindraprasthaluxuria" target="_blank" rel="noopener noreferrer">Book Now</a>
+                            <a class="room-enquire-btn" href="#enquiry" data-enquire-room="Mountain View Room (Balcony)">Enquire</a>
+                        </div>
 
                     </div>
 
@@ -501,10 +538,15 @@
                             class="photo-link"
                             href="https://photos.app.goo.gl/pocWVuUH8837cS5C7"
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener"
                         >
                             View Google Photos →
                         </a>
+
+                        <div class="room-booking-actions">
+                            <a class="room-book-btn" href="https://letsbook.me/booking/hotelindraprasthaluxuria" target="_blank" rel="noopener noreferrer">Book Now</a>
+                            <a class="room-enquire-btn" href="#enquiry" data-enquire-room="Royale Suite (Balcony)">Enquire</a>
+                        </div>
 
                     </div>
 
@@ -883,7 +925,7 @@
                                 <br>
                                 
                                 <a href="tel:+918085055993">
-                                    +91 75782 52353
+                                    +91 89895 71555
                                 </a>
                                 
                                 
@@ -1273,6 +1315,21 @@
     <!-- =====================================================
          JAVASCRIPT
     ====================================================== -->
+
+
+    <script>
+        document.querySelectorAll('[data-enquire-room]').forEach(function (link) {
+            link.addEventListener('click', function () {
+                var roomSelect = document.getElementById('room');
+                if (!roomSelect) return;
+                var requestedRoom = this.getAttribute('data-enquire-room');
+                var matchingOption = Array.from(roomSelect.options).find(function (option) {
+                    return option.text.trim() === requestedRoom;
+                });
+                if (matchingOption) roomSelect.value = matchingOption.value;
+            });
+        });
+    </script>
 
     <script src="../script.js"></script>
 
