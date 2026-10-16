@@ -1528,3 +1528,16 @@ img {
     transform: translateX(4px);
     color: var(--gold);
 }
+
+/* Full room gallery link */
+.gallery-link-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 24px;
+}
+
+@media (max-width: 600px) {
+    .gallery-link-wrap {
+        justify-content: flex-start;
+    }
+}
