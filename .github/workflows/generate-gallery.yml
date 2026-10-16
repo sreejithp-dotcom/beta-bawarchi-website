@@ -1,1 +1,113 @@
 
+name: Generate Room Gallery Manifests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "images/indraprastha/**"
+      - "images/Serenity/**"
+      - ".github/workflows/generate-gallery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-manifests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate manifests
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          root = Path("images")
+
+          supported = {
+              ".jpg", ".jpeg", ".png", ".webp", ".avif"
+          }
+
+          def title_from_folder(folder):
+              # Convert "super_deluxe" to "Super Deluxe".
+              return re.sub(
+                  r"\s+", " ",
+                  re.sub(r"[_-]+", " ", folder)
+              ).strip().title()
+
+          def get_images(folder):
+              return sorted(
+                  p.name for p in folder.iterdir()
+                  if p.is_file() and p.suffix.lower() in supported
+              )
+
+          def build_manifest(property_folder, excluded_root_files=None):
+              property_path = root / property_folder
+              manifest = {}
+
+              if not property_path.is_dir():
+                  return manifest
+
+              # Every direct subfolder is treated as a room category.
+              for category_path in sorted(property_path.iterdir()):
+                  if not category_path.is_dir():
+                      continue
+
+                  files = get_images(category_path)
+
+                  manifest[category_path.name] = {
+                      "title": title_from_folder(category_path.name),
+                      "folder": category_path.name + "/",
+                      "files": files
+                  }
+
+              return manifest
+
+          # Indraprastha: discover its existing room-category folders.
+          indraprastha = build_manifest("indraprastha")
+
+          # Serenity: discover deluxe, super_deluxe, and future folders.
+          serenity = build_manifest("Serenity")
+
+          outputs = {
+              root / "indraprastha" / "gallery-manifest.json": indraprastha,
+              root / "Serenity" / "gallery-manifest.json": serenity
+          }
+
+          for path, data in outputs.items():
+              path.parent.mkdir(parents=True, exist_ok=True)
+              path.write_text(
+                  json.dumps(data, indent=2, ensure_ascii=False) + "\n",
+                  encoding="utf-8"
+              )
+
+              print(f"Generated {path}")
+              for key, category in data.items():
+                  print(
+                      f"  {category['title']}: "
+                      f"{len(category['files'])} photos"
+                  )
+          PY
+
+      - name: Commit manifests if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add images/indraprastha/gallery-manifest.json
+          git add images/Serenity/gallery-manifest.json
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Update automatic hotel gallery manifests"
+            git push
+          else
+            echo "Gallery manifests are already up to date."
+          fi
+
