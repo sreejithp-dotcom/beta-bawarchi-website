@@ -540,283 +540,260 @@
     <div class="viewer-help">Use arrows or thumbnails · Press Esc to close</div>
   </div>
 
-  <script>
-    const imageBase = "../../images/indraprastha/";
+<script>
+(async function () {
+  const imageBase = "../../images/indraprastha/";
+  const manifestUrl = imageBase + "gallery-manifest.json";
 
-    /*
-      Keep filenames exactly as they appear in GitHub.
-      Add more filenames to a category's files array when needed.
-    */
-    const roomCategories = [
-      {
-        id: "executive-ac",
-        title: "Executive AC",
-        folder: "executive-ac/",
-        files: [
-          "no-view.webp",
-          "no-view2.webp",
-          "no-view3.webp",
-          "no-view4.webp"
-        ]
-      },
-      {
-        id: "executive-front",
-        title: "Executive AC Front View",
-        folder: "executive-front/",
-        files: [
-          "ex1.webp",
-          "ex2.webp",
-          "ex3.webp",
-          "ex4.webp",
-          "ex6.webp",
-          "ex8.webp",
-          "ex9.webp"
-        ]
-      },
-      {
-        id: "luxury-balcony",
-        title: "Executive Luxury Balcony View",
-        folder: "luxury-balcony/",
-        files: [
-          "ex-lx1.webp",
-          "ex-lx2.webp",
-          "ex-lx3.webp",
-          "ex-lx4.webp",
-          "ex-lx5.webp",
-          "ex-lx6.webp"
-        ]
-      },
-      {
-        id: "mountain-view",
-        title: "Mountain View Room Balcony",
-        folder: "mountain-view/",
-        files: [
-          "mountain2-1.webp",
-          "mounatain7.webp",
-          "mountain8.webp",
-          "mountain3.webp",
-          "mounatin5.webp",
-          "mountain4.webp",
-          "mounatin6.webp"
-        ]
-      },
-      {
-        id: "royale-suite",
-        title: "Royale Suite Balcony",
-        folder: "royale-suite/",
-        files: [
-          "royale2-1.webp",
-          "royale2-2.webp",
-          "royale2-3.webp",
-          "royale2-4.webp",
-          "royale2-5.webp",
-          "royale2-6.webp",
-          "royale2-7.webp",
-          "royale2-9.webp",
-          "royale2-web-1448x1086.webp"
-        ]
-      }
-    ];
+  const roomGallery = document.getElementById("roomGallery");
+  const categoryNav = document.querySelector(".gallery-categories");
+  const photoViewer = document.getElementById("photoViewer");
+  const viewerImage = document.getElementById("viewerImage");
+  const viewerRoomName = document.getElementById("viewerRoomName");
+  const viewerCounter = document.getElementById("viewerCounter");
+  const viewerThumbnails = document.getElementById("viewerThumbnails");
 
-    const roomGallery = document.getElementById("roomGallery");
-    const photoViewer = document.getElementById("photoViewer");
-    const viewerImage = document.getElementById("viewerImage");
-    const viewerRoomName = document.getElementById("viewerRoomName");
-    const viewerCounter = document.getElementById("viewerCounter");
-    const viewerThumbnails = document.getElementById("viewerThumbnails");
+  let currentRoom = null;
+  let currentPhotoIndex = 0;
+  let previouslyFocusedElement = null;
 
-    let currentRoom = null;
-    let currentPhotoIndex = 0;
-    let previouslyFocusedElement = null;
+  function getImagePath(room, filename) {
+    return imageBase + room.folder + filename;
+  }
 
-    function getImagePath(room, filename) {
-      return imageBase + room.folder + filename;
+  function createElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+
+  function openViewer(room, index) {
+    currentRoom = room;
+    currentPhotoIndex = index;
+    previouslyFocusedElement = document.activeElement;
+
+    photoViewer.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    renderViewer();
+
+    document.getElementById("closeViewer").focus();
+  }
+
+  function renderViewer() {
+    if (!currentRoom || !currentRoom.files.length) return;
+
+    const filename = currentRoom.files[currentPhotoIndex];
+
+    viewerRoomName.textContent = currentRoom.title;
+    viewerCounter.textContent =
+      `${currentPhotoIndex + 1} of ${currentRoom.files.length}`;
+
+    viewerImage.src = getImagePath(currentRoom, filename);
+    viewerImage.alt =
+      `${currentRoom.title}, photo ${currentPhotoIndex + 1}`;
+
+    viewerImage.onerror = function () {
+      console.error("Could not load gallery image:", viewerImage.src);
+      viewerImage.alt = "Photo could not be loaded. Check the image filename.";
+    };
+
+    viewerThumbnails.replaceChildren();
+
+    currentRoom.files.forEach((file, index) => {
+      const button = createElement(
+        "button",
+        "viewer-thumb" + (index === currentPhotoIndex ? " is-active" : "")
+      );
+
+      button.type = "button";
+      button.setAttribute("aria-label", `Show photo ${index + 1}`);
+
+      const image = document.createElement("img");
+      image.src = getImagePath(currentRoom, file);
+      image.alt = "";
+      image.loading = "lazy";
+
+      image.onerror = () => {
+        button.hidden = true;
+        console.error("Could not load thumbnail:", image.src);
+      };
+
+      button.appendChild(image);
+      button.addEventListener("click", () => {
+        currentPhotoIndex = index;
+        renderViewer();
+      });
+
+      viewerThumbnails.appendChild(button);
+    });
+
+    const active = viewerThumbnails.querySelector(".is-active");
+    if (active) {
+      active.scrollIntoView({
+        block: "nearest",
+        inline: "nearest"
+      });
+    }
+  }
+
+  function movePhoto(direction) {
+    if (!currentRoom || !currentRoom.files.length) return;
+
+    currentPhotoIndex =
+      (currentPhotoIndex + direction + currentRoom.files.length) %
+      currentRoom.files.length;
+
+    renderViewer();
+  }
+
+  function closeViewer() {
+    photoViewer.classList.remove("is-open");
+    document.body.style.overflow = "";
+    viewerImage.removeAttribute("src");
+
+    if (previouslyFocusedElement) previouslyFocusedElement.focus();
+  }
+
+  function buildGallery(manifest) {
+    roomGallery.replaceChildren();
+    categoryNav.replaceChildren();
+
+    const rooms = Object.entries(manifest);
+
+    if (!rooms.length) {
+      roomGallery.textContent = "No room categories or photos were found.";
+      return;
     }
 
-    // Create one compact card per room category.
-    roomCategories.forEach(function(room) {
-      const section = document.createElement("section");
-      section.className = "gallery-section";
-      section.id = room.id;
+    rooms.forEach(([id, data]) => {
+      const room = {
+        id,
+        title: data.title || id,
+        folder: data.folder || id + "/",
+        files: Array.isArray(data.files) ? data.files : []
+      };
 
-      const card = document.createElement("article");
-      card.className = "gallery-card";
+      // Don't show empty categories.
+      if (!room.files.length) return;
 
-      const coverButton = document.createElement("button");
+      // Create category navigation automatically.
+      const navLink = createElement("a", "", room.title);
+      navLink.href = "#" + id;
+      categoryNav.appendChild(navLink);
+
+      // Create one compact card per category.
+      const section = createElement("section", "gallery-section");
+      section.id = id;
+
+      const card = createElement("article", "gallery-card");
+
+      const coverButton = createElement("button", "gallery-cover");
       coverButton.type = "button";
-      coverButton.className = "gallery-cover";
-      coverButton.setAttribute("aria-label", "View " + room.title + " photos");
+      coverButton.setAttribute("aria-label", `View ${room.title} photos`);
 
-      const coverImage = document.createElement("img");
-      coverImage.src = getImagePath(room, room.files[0]);
-      coverImage.alt = room.title + " at Hotel Indraprastha Luxuria";
-      coverImage.loading = "lazy";
-      coverImage.decoding = "async";
+      const cover = document.createElement("img");
+      cover.src = getImagePath(room, room.files[0]);
+      cover.alt = room.title;
+      cover.loading = "lazy";
+      cover.decoding = "async";
 
-      // Show a helpful fallback if the cover filename is incorrect.
-      coverImage.addEventListener("error", function() {
+      const fallback = createElement(
+        "span",
+        "cover-fallback",
+        "Cover photo unavailable. Check the filename in GitHub."
+      );
+
+      cover.onerror = function () {
         coverButton.classList.add("image-error");
-        console.error("Cover image not found:", coverImage.src);
-      });
+        console.error("Cover image could not be loaded:", cover.src);
+      };
 
-      const fallback = document.createElement("span");
-      fallback.className = "cover-fallback";
-      fallback.textContent = "Cover photo unavailable. Please check the image filename.";
+      coverButton.append(cover, fallback);
+      coverButton.addEventListener("click", () => openViewer(room, 0));
 
-      coverButton.append(coverImage, fallback);
-      coverButton.addEventListener("click", function() {
-        openViewer(room, 0);
-      });
+      const info = createElement("div", "gallery-card-info");
+      info.appendChild(createElement("div", "gallery-eyebrow", "ROOM CATEGORY"));
+      info.appendChild(createElement("h2", "", room.title));
+      info.appendChild(
+        createElement("p", "", "Explore room photographs and views.")
+      );
+      info.appendChild(
+        createElement("span", "gallery-count",
+          `${room.files.length} photos available`)
+      );
 
-      const info = document.createElement("div");
-      info.className = "gallery-card-info";
-
-      const eyebrow = document.createElement("div");
-      eyebrow.className = "gallery-eyebrow";
-      eyebrow.textContent = "ROOM CATEGORY";
-
-      const title = document.createElement("h2");
-      title.textContent = room.title;
-
-      const description = document.createElement("p");
-      description.textContent = "Explore room photographs and views.";
-
-      const count = document.createElement("span");
-      count.className = "gallery-count";
-      count.textContent = room.files.length + " photos available";
-
-      const viewButton = document.createElement("button");
+      const viewButton = createElement("button", "gallery-action", "View Photos →");
       viewButton.type = "button";
-      viewButton.className = "gallery-action";
-      viewButton.textContent = "View Photos →";
-      viewButton.addEventListener("click", function() {
-        openViewer(room, 0);
-      });
+      viewButton.addEventListener("click", () => openViewer(room, 0));
 
-      info.append(eyebrow, title, description, count, viewButton);
+      info.appendChild(viewButton);
       card.append(coverButton, info);
       section.appendChild(card);
       roomGallery.appendChild(section);
     });
 
-    function openViewer(room, index) {
-      currentRoom = room;
-      currentPhotoIndex = index;
-      previouslyFocusedElement = document.activeElement;
+    if (!roomGallery.children.length) {
+      roomGallery.textContent =
+        "No room photos were found. Check the image folders and manifest.";
+    }
+  }
 
-      photoViewer.classList.add("is-open");
-      document.body.style.overflow = "hidden";
-      renderViewer();
-      document.getElementById("closeViewer").focus();
+  document.getElementById("previousPhoto").addEventListener(
+    "click", () => movePhoto(-1)
+  );
+
+  document.getElementById("nextPhoto").addEventListener(
+    "click", () => movePhoto(1)
+  );
+
+  document.getElementById("closeViewer").addEventListener(
+    "click", closeViewer
+  );
+
+  photoViewer.addEventListener("click", event => {
+    if (event.target === photoViewer) closeViewer();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (!photoViewer.classList.contains("is-open")) return;
+
+    if (event.key === "Escape") closeViewer();
+    if (event.key === "ArrowLeft") movePhoto(-1);
+    if (event.key === "ArrowRight") movePhoto(1);
+  });
+
+  let touchStartX = 0;
+
+  viewerImage.addEventListener("touchstart", event => {
+    touchStartX = event.changedTouches[0].screenX;
+  }, { passive: true });
+
+  viewerImage.addEventListener("touchend", event => {
+    const delta = event.changedTouches[0].screenX - touchStartX;
+
+    if (Math.abs(delta) > 50) {
+      movePhoto(delta < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+
+  try {
+    const response = await fetch(manifestUrl, { cache: "no-store" });
+
+    if (!response.ok) {
+      throw new Error(`Manifest request failed: ${response.status}`);
     }
 
-    function renderViewer() {
-      if (!currentRoom || !currentRoom.files.length) return;
+    const manifest = await response.json();
+    buildGallery(manifest);
+  } catch (error) {
+    console.error("Could not load room gallery manifest:", error);
+    roomGallery.textContent =
+      "The room gallery could not load. Please refresh the page or try again later.";
+  }
+})();
+</script>
 
-      const filename = currentRoom.files[currentPhotoIndex];
-      viewerImage.src = getImagePath(currentRoom, filename);
-      viewerImage.alt = currentRoom.title + " photo " + (currentPhotoIndex + 1);
-      viewerRoomName.textContent = currentRoom.title;
-      viewerCounter.textContent =
-        (currentPhotoIndex + 1) + " of " + currentRoom.files.length;
-
-      viewerImage.onerror = function() {
-        console.error("Popup image not found:", viewerImage.src);
-        viewerImage.alt = "This photo could not be loaded. Check the filename.";
-      };
-
-      viewerThumbnails.replaceChildren();
-
-      currentRoom.files.forEach(function(thumbFilename, index) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className =
-          "viewer-thumb" + (index === currentPhotoIndex ? " is-active" : "");
-        button.setAttribute("aria-label", "Show photo " + (index + 1));
-
-        const image = document.createElement("img");
-        image.src = getImagePath(currentRoom, thumbFilename);
-        image.alt = "";
-        image.loading = "lazy";
-        image.onerror = function() {
-          button.hidden = true;
-          console.error("Thumbnail image not found:", image.src);
-        };
-
-        button.appendChild(image);
-        button.addEventListener("click", function() {
-          currentPhotoIndex = index;
-          renderViewer();
-        });
-
-        viewerThumbnails.appendChild(button);
-      });
-
-      const activeThumbnail = viewerThumbnails.querySelector(".is-active");
-      if (activeThumbnail) {
-        activeThumbnail.scrollIntoView({
-          block: "nearest",
-          inline: "nearest"
-        });
-      }
-    }
-
-    function movePhoto(direction) {
-      if (!currentRoom) return;
-
-      currentPhotoIndex =
-        (currentPhotoIndex + direction + currentRoom.files.length) %
-        currentRoom.files.length;
-
-      renderViewer();
-    }
-
-    function closeViewer() {
-      photoViewer.classList.remove("is-open");
-      document.body.style.overflow = "";
-      viewerImage.src = "";
-
-      if (previouslyFocusedElement) {
-        previouslyFocusedElement.focus();
-      }
-    }
-
-    document.getElementById("previousPhoto").addEventListener("click", function() {
-      movePhoto(-1);
-    });
-
-    document.getElementById("nextPhoto").addEventListener("click", function() {
-      movePhoto(1);
-    });
-
-    document.getElementById("closeViewer").addEventListener("click", closeViewer);
-
-    photoViewer.addEventListener("click", function(event) {
-      if (event.target === photoViewer) closeViewer();
-    });
-
-    document.addEventListener("keydown", function(event) {
-      if (!photoViewer.classList.contains("is-open")) return;
-
-      if (event.key === "Escape") closeViewer();
-      if (event.key === "ArrowLeft") movePhoto(-1);
-      if (event.key === "ArrowRight") movePhoto(1);
-    });
-
-    // Swipe navigation on touchscreens.
-    let touchStartX = 0;
-
-    viewerImage.addEventListener("touchstart", function(event) {
-      touchStartX = event.changedTouches[0].screenX;
-    }, { passive: true });
-
-    viewerImage.addEventListener("touchend", function(event) {
-      const delta = event.changedTouches[0].screenX - touchStartX;
-      if (Math.abs(delta) > 50) {
-        movePhoto(delta < 0 ? 1 : -1);
-      }
-    }, { passive: true });
-  </script>
 </body>
 </html>
 
