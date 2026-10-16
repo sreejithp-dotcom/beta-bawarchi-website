@@ -1,1 +1,29 @@
-{}
+{
+  "deluxe": {
+    "title": "Deluxe",
+    "folder": "deluxe/",
+    "files": [
+      "Deluxe Room 2.jpg",
+      "Deluxe Room 3.jpg",
+      "Deluxe Room 4.jpg",
+      "Deluxe Room 5.jpg",
+      "Deluxe Room 6.jpg",
+      "Deluxe Room.jpg"
+    ]
+  },
+  "super_deluxe": {
+    "title": "Super Deluxe",
+    "folder": "super_deluxe/",
+    "files": [
+      "Super Deluxe.jpg",
+      "Super Deluxe1.jpg",
+      "Super Deluxe2.jpg",
+      "Super Deluxe3.jpg",
+      "Super Deluxe4.jpg",
+      "Super Deluxe5.jpg",
+      "Super Deluxe6.jpg",
+      "Super Deluxe7.jpg",
+      "Super Deluxe8.jpg"
+    ]
+  }
+}
