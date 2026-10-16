@@ -1,1 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <title>Room Gallery | Serenity The Villa, Pachmarhi</title>
+  <meta name="description" content="Explore Deluxe AC and Super Deluxe AC room photos at Serenity The Villa in Pachmarhi.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://betabawarchigroup.com/serenity-the-villa-pachmarhi/gallery/">
+  <meta name="theme-color" content="#f7f5ef">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+
+  <style>
+    /* Gallery page */
+    .gallery-breadcrumb {
+      padding: 13px 6%;
+      background: var(--white, #fff);
+      border-bottom: 1px solid var(--line, #ded9cf);
+      color: var(--muted, #6f6d67);
+      font-size: 12px;
+    }
+
+    .gallery-breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .gallery-breadcrumb a:hover {
+      color: var(--gold, #a57d42);
+    }
+
+    .gallery-intro {
+      padding: 36px 20px 28px;
+      text-align: center;
+      background: var(--paper, #f7f5ef);
+    }
+
+    .gallery-eyebrow {
+      color: var(--gold, #a57d42);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .gallery-intro h1 {
+      margin: 9px 0;
+      font-family: var(--serif, "Playfair Display", Georgia, serif);
+      font-size: clamp(30px, 4vw, 43px);
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--ink, #20201d);
+    }
+
+    .gallery-intro p {
+      max-width: 580px;
+      margin: 0 auto;
+      color: var(--muted, #6f6d67);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .gallery-categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px 25px;
+      background: var(--paper, #f7f5ef);
+    }
+
+    .gallery-categories a {
+      padding: 8px 12px;
+      border: 1px solid var(--line, #ded9cf);
+      border-radius: 24px;
+      background: white;
+      color: var(--ink, #20201d);
+      font-size: 11px;
+      text-decoration: none;
+    }
+
+    .gallery-categories a:hover {
+      border-color: var(--gold, #a57d42);
+      color: var(--gold, #a57d42);
+    }
+
+    .gallery-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 24px 42px;
+    }
+
+    .gallery-section {
+      margin-bottom: 30px;
+      scroll-margin-top: 25px;
+    }
+
+    .gallery-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .gallery-card {
+      display: grid;
+      grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+      align-items: center;
+      gap: 25px;
+      padding: 15px;
+      border: 1px solid var(--line, #ded9cf);
+      border-radius: 4px;
+      background: var(--white, #fff);
+      box-shadow: 0 3px 12px rgba(32, 32, 29, .04);
+    }
+
+    .gallery-cover {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      border-radius: 3px;
+      background: #e9e4d9;
+      cursor: pointer;
+    }
+
+    .gallery-cover img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .3s ease;
+    }
+
+    .gallery-cover:hover img {
+      transform: scale(1.035);
+    }
+
+    .cover-fallback {
+      display: none;
+      position: absolute;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      color: #6f6d67;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .gallery-cover.image-error .cover-fallback {
+      display: flex;
+    }
+
+    .gallery-cover.image-error img {
+      display: none;
+    }
+
+    .gallery-card-info {
+      min-width: 0;
+      padding: 8px 10px 8px 0;
+    }
+
+    .gallery-card-info h2 {
+      margin: 8px 0 10px;
+      font-family: var(--serif, "Playfair Display", Georgia, serif);
+      font-size: clamp(23px, 2.5vw, 30px);
+      line-height: 1.25;
+      font-weight: 500;
+      color: var(--ink, #20201d);
+    }
+
+    .gallery-card-info p {
+      margin: 0 0 18px;
+      color: var(--muted, #6f6d67);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .gallery-count {
+      display: block;
+      margin-bottom: 17px;
+      color: var(--muted, #6f6d67);
+      font-size: 12px;
+    }
+
+    .gallery-action {
+      display: inline-block;
+      padding: 11px 17px;
+      border: 1px solid var(--ink, #20201d);
+      background: var(--ink, #20201d);
+      color: white;
+      font-family: var(--sans, "DM Sans", Arial, sans-serif);
+      font-size: 12px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+
+    .gallery-action:hover {
+      background: var(--gold, #a57d42);
+      border-color: var(--gold, #a57d42);
+      color: white;
+    }
+
+    .gallery-booking {
+      padding: 36px 20px;
+      background: var(--paper, #f7f5ef);
+      border-top: 1px solid var(--line, #ded9cf);
+      text-align: center;
+    }
+
+    .gallery-booking h2 {
+      margin: 8px 0;
+      font-family: var(--serif, "Playfair Display", Georgia, serif);
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .gallery-booking p {
+      max-width: 540px;
+      margin: 0 auto 18px;
+      color: var(--muted, #6f6d67);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .gallery-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .gallery-action.secondary {
+      background: transparent;
+      color: var(--ink, #20201d);
+    }
+
+    .gallery-action.secondary:hover {
+      background: var(--gold, #a57d42);
+      color: white;
+    }
+
+    /* Popup slideshow */
+    .photo-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(15, 15, 14, .96);
+    }
+
+    .photo-viewer.is-open {
+      display: flex;
+    }
+
+    .viewer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: min(100%, 1000px);
+      margin-bottom: 12px;
+      color: white;
+    }
+
+    .viewer-room-name {
+      font-family: var(--serif, "Playfair Display", Georgia, serif);
+      font-size: 19px;
+    }
+
+    .viewer-counter {
+      margin-top: 4px;
+      color: #d0cec8;
+      font-size: 12px;
+    }
+
+    .viewer-close {
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #777;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .viewer-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: min(100%, 1000px);
+      height: min(62vh, 620px);
+    }
+
+    .viewer-image {
+      display: block;
+      max-width: calc(100% - 100px);
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .viewer-arrow {
+      flex: 0 0 40px;
+      height: 44px;
+      border: 1px solid #777;
+      border-radius: 3px;
+      background: #292825;
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    .viewer-arrow:hover,
+    .viewer-close:hover {
+      background: #4a4842;
+    }
+
+    .viewer-thumbnails {
+      display: flex;
+      gap: 8px;
+      width: min(100%, 1000px);
+      overflow-x: auto;
+      padding: 13px 2px 5px;
+    }
+
+    .viewer-thumb {
+      flex: 0 0 70px;
+      height: 52px;
+      padding: 0;
+      overflow: hidden;
+      border: 2px solid transparent;
+      background: transparent;
+      opacity: .65;
+      cursor: pointer;
+    }
+
+    .viewer-thumb.is-active {
+      border-color: #d8b77f;
+      opacity: 1;
+    }
+
+    .viewer-thumb img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .viewer-help {
+      margin-top: 8px;
+      color: #ccc;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 700px) {
+      .gallery-main {
+        padding: 20px 14px 30px;
+      }
+
+      .gallery-card {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        padding: 11px;
+      }
+
+      .gallery-cover {
+        max-height: 300px;
+      }
+
+      .gallery-card-info {
+        padding: 3px 5px 8px;
+      }
+
+      .gallery-card-info h2 {
+        font-size: 24px;
+      }
+
+      .gallery-card-info p {
+        margin-bottom: 12px;
+      }
+
+      .gallery-count {
+        margin-bottom: 12px;
+      }
+
+      .viewer-stage {
+        height: 55vh;
+        gap: 5px;
+      }
+
+      .viewer-image {
+        max-width: calc(100% - 68px);
+      }
+
+      .viewer-arrow {
+        flex-basis: 30px;
+        height: 40px;
+        font-size: 21px;
+      }
+
+      .viewer-thumb {
+        flex-basis: 58px;
+        height: 44px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gallery-cover img {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ORIGINAL WEBSITE HEADER -->
+  <header class="header">
+    <a class="brand" href="../../index.html" aria-label="Beta Bawarchi Group home">
+      <img src="../../images/logo.png" alt="Beta Bawarchi Group" class="brand-logo">
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="../../index.html#properties">Stays</a>
+      <a href="../../index.html#experiences">Experiences</a>
+      <a href="../../index.html#dining">Dining</a>
+      <a href="../index.html#enquiry">Contact</a>
+      <a class="cta" href="../index.html#enquiry">Enquire</a>
+    </nav>
+  </header>
+
+  <div class="gallery-breadcrumb">
+    <a href="../../index.html">Beta Bawarchi Group</a>
+    &nbsp; / &nbsp;
+    <a href="../index.html">Serenity The Villa</a>
+    &nbsp; / &nbsp; Room Gallery
+  </div>
+
+  <main>
+    <section class="gallery-intro">
+      <div class="gallery-eyebrow">Serenity The Villa by Beta Bawarchi · Pachmarhi</div>
+      <h1>Explore Your Stay</h1>
+      <p>Browse our Deluxe AC and Super Deluxe AC categories and open the photo gallery to explore the rooms.</p>
+    </section>
+
+    <nav class="gallery-categories" id="categoryNav" aria-label="Browse room categories"></nav>
+
+    <div class="gallery-main" id="roomGallery"></div>
+
+    <section class="gallery-booking">
+      <div class="gallery-eyebrow">Plan Your Pachmarhi Stay</div>
+      <h2>Find Your Room</h2>
+      <p>Ready to visit? Contact our team to enquire about your stay at Serenity The Villa.</p>
+
+      <div class="gallery-actions">
+        <a class="gallery-action" href="../index.html#enquiry">Book / Enquire</a>
+
+        <a class="gallery-action secondary"
+           href="https://wa.me/918085055993?text=Hello%20Beta%20Bawarchi%20Group%2C%20I%20would%20like%20to%20enquire%20about%20Serenity%20The%20Villa."
+           target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
+
+        <a class="gallery-action secondary" href="../index.html">Back to Serenity The Villa</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ORIGINAL WEBSITE FOOTER -->
+  <footer class="footer" id="contact">
+    <div>
+      <div class="footer-brand">BETA BAWARCHI GROUP</div>
+      <p>People · Places · Experiences</p>
+    </div>
+
+    <div class="footer-contact">
+      <a href="mailto:sales@betabawarchigroup.com">sales@betabawarchigroup.com</a>
+      <a href="mailto:support@betabawarchigroup.com">support@betabawarchigroup.com</a>
+      <a href="https://wa.me/918085055993" target="_blank" rel="noopener noreferrer">
+        WhatsApp · +91 80850 55993
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Beta Bawarchi Group</span>
+      <span>Pachmarhi, Madhya Pradesh</span>
+    </div>
+  </footer>
+
+  <!-- POPUP PHOTO VIEWER -->
+  <div class="photo-viewer" id="photoViewer"
+       role="dialog" aria-modal="true" aria-label="Room photo gallery">
+
+    <div class="viewer-header">
+      <div>
+        <div class="viewer-room-name" id="viewerRoomName"></div>
+        <div class="viewer-counter" id="viewerCounter"></div>
+      </div>
+      <button class="viewer-close" id="closeViewer"
+              type="button" aria-label="Close photo gallery">×</button>
+    </div>
+
+    <div class="viewer-stage">
+      <button class="viewer-arrow" id="previousPhoto"
+              type="button" aria-label="Previous photo">‹</button>
+      <img class="viewer-image" id="viewerImage" src="" alt="">
+      <button class="viewer-arrow" id="nextPhoto"
+              type="button" aria-label="Next photo">›</button>
+    </div>
+
+    <div class="viewer-thumbnails" id="viewerThumbnails"
+         aria-label="Photo thumbnails"></div>
+    <div class="viewer-help">Use arrows or thumbnails · Press Esc to close</div>
+  </div>
+
+  <script>
+    const imageBase = "../../images/Serenity/";
+    const manifestUrl = imageBase + "gallery-manifest.json";
+    const titleOverrides = {
+      "deluxe": "Deluxe AC",
+      "super_deluxe": "Super Deluxe AC"
+    };
+
+    const roomGallery = document.getElementById("roomGallery");
+    const categoryNav = document.getElementById("categoryNav");
+    const photoViewer = document.getElementById("photoViewer");
+    const viewerImage = document.getElementById("viewerImage");
+    const viewerRoomName = document.getElementById("viewerRoomName");
+    const viewerCounter = document.getElementById("viewerCounter");
+    const viewerThumbnails = document.getElementById("viewerThumbnails");
+
+    let currentRoom = null;
+    let currentPhotoIndex = 0;
+    let previouslyFocusedElement = null;
+
+    function getImagePath(room, filename) {
+      return imageBase + room.folder + filename;
+    }
+
+    function titleFromFolder(folder) {
+      return folder.split("/").filter(Boolean).pop().split(/[_-]+/)
+        .map(function(word) { return word.charAt(0).toUpperCase() + word.slice(1); })
+        .join(" ");
+    }
+
+    function renderRoom(room) {
+      const section = document.createElement("section");
+      section.className = "gallery-section";
+      section.id = room.id;
+
+      const card = document.createElement("article");
+      card.className = "gallery-card";
+
+      const coverButton = document.createElement("button");
+      coverButton.type = "button";
+      coverButton.className = "gallery-cover";
+      coverButton.setAttribute("aria-label", "View " + room.title + " photos");
+
+      const coverImage = document.createElement("img");
+      coverImage.src = getImagePath(room, room.files[0]);
+      coverImage.alt = room.title + " at Serenity The Villa";
+      coverImage.loading = "lazy";
+      coverImage.decoding = "async";
+      coverImage.addEventListener("error", function() {
+        coverButton.classList.add("image-error");
+        console.error("Cover image not found:", coverImage.src);
+      });
+
+      const fallback = document.createElement("span");
+      fallback.className = "cover-fallback";
+      fallback.textContent = "Cover photo unavailable. Please check the image filename.";
+      coverButton.append(coverImage, fallback);
+      coverButton.addEventListener("click", function() { openViewer(room, 0); });
+
+      const info = document.createElement("div");
+      info.className = "gallery-card-info";
+      const eyebrow = document.createElement("div");
+      eyebrow.className = "gallery-eyebrow";
+      eyebrow.textContent = "ROOM CATEGORY";
+      const title = document.createElement("h2");
+      title.textContent = room.title;
+      const description = document.createElement("p");
+      description.textContent = "Explore room photographs and views.";
+      const count = document.createElement("span");
+      count.className = "gallery-count";
+      count.textContent = room.files.length + " photos available";
+      const viewButton = document.createElement("button");
+      viewButton.type = "button";
+      viewButton.className = "gallery-action";
+      viewButton.textContent = "View Photos →";
+      viewButton.addEventListener("click", function() { openViewer(room, 0); });
+
+      info.append(eyebrow, title, description, count, viewButton);
+      card.append(coverButton, info);
+      section.appendChild(card);
+      roomGallery.appendChild(section);
+
+      const navLink = document.createElement("a");
+      navLink.href = "#" + room.id;
+      navLink.textContent = room.title;
+      categoryNav.appendChild(navLink);
+    }
+
+    async function loadGallery() {
+      try {
+        const response = await fetch(manifestUrl, { cache: "no-store" });
+        if (!response.ok) throw new Error("Manifest request failed: " + response.status);
+        const manifest = await response.json();
+        const rooms = Object.entries(manifest).map(function(entry) {
+          const folderName = entry[0];
+          const data = entry[1];
+          const folder = data.folder || (folderName + "/");
+          const files = Array.isArray(data.files) ? data.files : [];
+          return {
+            id: folderName.replace(/[^a-zA-Z0-9_-]/g, "-"),
+            title: titleOverrides[folderName] || data.title || titleFromFolder(folderName),
+            folder: folder.endsWith("/") ? folder : folder + "/",
+            files: files
+          };
+        }).filter(function(room) { return room.files.length > 0; });
+
+        // Keep the current Serenity categories first, then include future folders automatically.
+        const order = ["deluxe", "super_deluxe"];
+        rooms.sort(function(a, b) {
+          const ai = order.indexOf(a.id), bi = order.indexOf(b.id);
+          if (ai === -1 && bi === -1) return a.title.localeCompare(b.title);
+          if (ai === -1) return 1;
+          if (bi === -1) return -1;
+          return ai - bi;
+        });
+
+        if (!rooms.length) throw new Error("No room photos found in the manifest.");
+        rooms.forEach(renderRoom);
+      } catch (error) {
+        console.error("Unable to load Serenity gallery:", error);
+        roomGallery.innerHTML = '<p class="gallery-load-error">Room photos are not available yet. Please check that <code>images/Serenity/gallery-manifest.json</code> has been generated and committed.</p>';
+      }
+    }
+
+    function openViewer(room, index) {
+      currentRoom = room;
+      currentPhotoIndex = index;
+      previouslyFocusedElement = document.activeElement;
+
+      photoViewer.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      renderViewer();
+      document.getElementById("closeViewer").focus();
+    }
+
+    function renderViewer() {
+      if (!currentRoom || !currentRoom.files.length) return;
+
+      const filename = currentRoom.files[currentPhotoIndex];
+      viewerImage.src = getImagePath(currentRoom, filename);
+      viewerImage.alt = currentRoom.title + " photo " + (currentPhotoIndex + 1);
+      viewerRoomName.textContent = currentRoom.title;
+      viewerCounter.textContent =
+        (currentPhotoIndex + 1) + " of " + currentRoom.files.length;
+
+      viewerImage.onerror = function() {
+        console.error("Popup image not found:", viewerImage.src);
+        viewerImage.alt = "This photo could not be loaded. Check the filename.";
+      };
+
+      viewerThumbnails.replaceChildren();
+
+      currentRoom.files.forEach(function(thumbFilename, index) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className =
+          "viewer-thumb" + (index === currentPhotoIndex ? " is-active" : "");
+        button.setAttribute("aria-label", "Show photo " + (index + 1));
+
+        const image = document.createElement("img");
+        image.src = getImagePath(currentRoom, thumbFilename);
+        image.alt = "";
+        image.loading = "lazy";
+        image.onerror = function() {
+          button.hidden = true;
+          console.error("Thumbnail image not found:", image.src);
+        };
+
+        button.appendChild(image);
+        button.addEventListener("click", function() {
+          currentPhotoIndex = index;
+          renderViewer();
+        });
+
+        viewerThumbnails.appendChild(button);
+      });
+
+      const activeThumbnail = viewerThumbnails.querySelector(".is-active");
+      if (activeThumbnail) {
+        activeThumbnail.scrollIntoView({
+          block: "nearest",
+          inline: "nearest"
+        });
+      }
+    }
+
+    function movePhoto(direction) {
+      if (!currentRoom) return;
+
+      currentPhotoIndex =
+        (currentPhotoIndex + direction + currentRoom.files.length) %
+        currentRoom.files.length;
+
+      renderViewer();
+    }
+
+    function closeViewer() {
+      photoViewer.classList.remove("is-open");
+      document.body.style.overflow = "";
+      viewerImage.src = "";
+
+      if (previouslyFocusedElement) {
+        previouslyFocusedElement.focus();
+      }
+    }
+
+    document.getElementById("previousPhoto").addEventListener("click", function() {
+      movePhoto(-1);
+    });
+
+    document.getElementById("nextPhoto").addEventListener("click", function() {
+      movePhoto(1);
+    });
+
+    document.getElementById("closeViewer").addEventListener("click", closeViewer);
+
+    photoViewer.addEventListener("click", function(event) {
+      if (event.target === photoViewer) closeViewer();
+    });
+
+    document.addEventListener("keydown", function(event) {
+      if (!photoViewer.classList.contains("is-open")) return;
+
+      if (event.key === "Escape") closeViewer();
+      if (event.key === "ArrowLeft") movePhoto(-1);
+      if (event.key === "ArrowRight") movePhoto(1);
+    });
+
+    // Swipe navigation on touchscreens.
+    let touchStartX = 0;
+
+    viewerImage.addEventListener("touchstart", function(event) {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    viewerImage.addEventListener("touchend", function(event) {
+      const delta = event.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(delta) > 50) {
+        movePhoto(delta < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+
+    loadGallery();
+  </script>
+</body>
+</html>
