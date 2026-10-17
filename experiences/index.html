@@ -1,1 +1,651 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pachmarhi Experiences, Sightseeing &amp; Group Trips | Beta Bawarchi Group</title>
+  <meta name="description" content="Discover Pachmarhi sightseeing, gypsy safari enquiries, camping, corporate retreats, school trips, destination weddings, dining and outdoor experiences with Beta Bawarchi Group.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://betabawarchigroup.com/experiences/">
+  <meta name="theme-color" content="#f7f4ec">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Discover Pachmarhi Beyond Your Stay | Beta Bawarchi Group">
+  <meta property="og:description" content="Explore sightseeing, nature, corporate retreats, school trips and destination celebrations in Pachmarhi, Madhya Pradesh.">
+  <meta property="og:url" content="https://betabawarchigroup.com/experiences/">
+  <meta property="og:image" content="https://betabawarchigroup.com/images/Hero-slide/Destination-1-web.webp">
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "name":"Pachmarhi Experiences",
+    "url":"https://betabawarchigroup.com/experiences/",
+    "description":"Sightseeing, outdoor activities, corporate retreats, school trips, destination celebrations, dining and transport enquiries in Pachmarhi.",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"Beta Bawarchi Group",
+      "url":"https://betabawarchigroup.com/"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Beta Bawarchi Group",
+      "url":"https://betabawarchigroup.com/",
+      "telephone":"+91-80850-55993",
+      "email":"sales@betabawarchigroup.com"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+
+  <style>
+    :root {
+      --exp-forest: #142c25;
+      --exp-deep: #0d211c;
+      --exp-gold: #c18b3d;
+      --exp-cream: #f7f4ec;
+      --exp-muted: #6b6b62;
+    }
+
+    body { background: var(--exp-cream); }
+
+    /* Cinematic hero */
+    .exp-hero {
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      padding: 38px max(7%, calc((100% - 1320px) / 2));
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(7,22,20,.88), rgba(7,22,20,.58) 47%, rgba(7,22,20,.08)),
+        url("../images/Hero-slide/Destination-1-web.webp") center 48% / cover;
+    }
+
+    .exp-hero-copy { max-width: 590px; }
+    .exp-kicker {
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font: 600 10px/1.5 "DM Sans", sans-serif;
+      color: var(--exp-gold);
+    }
+
+    .exp-hero h1 {
+      margin: 10px 0 12px;
+      color: #fff;
+      font: 500 clamp(38px, 5vw, 62px)/.99 "Playfair Display", Georgia, serif;
+      letter-spacing: -.035em;
+    }
+
+    .exp-hero p {
+      max-width: 520px;
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 0 17px;
+    }
+
+    .exp-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 17px;
+      color: #fff;
+      background: var(--exp-gold);
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 3px;
+      text-decoration: none;
+      font: 600 12px "DM Sans", sans-serif;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .exp-button:hover {
+      transform: translateY(-2px);
+      background: #a8732b;
+    }
+
+    /* Benefits strip */
+    .exp-benefits {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      padding: 16px 6%;
+      background: #fffdf8;
+      border-bottom: 1px solid #e6e0d3;
+    }
+
+    .exp-benefit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 11px;
+      color: #293a31;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .exp-symbol { font-size: 24px; color: var(--exp-forest); }
+
+    /* Main experiences */
+    .exp-main { padding: 30px 5% 32px; }
+
+    .exp-section-head {
+      max-width: 1380px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .exp-section-head h2,
+    .exp-occasion-intro h2 {
+      font: 500 clamp(29px, 3.4vw, 43px)/1.05 "Playfair Display", Georgia, serif;
+      letter-spacing: -.025em;
+      margin: 6px 0 0;
+      color: #17251f;
+    }
+
+    .exp-section-head p {
+      max-width: 430px;
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--exp-muted);
+    }
+
+    .exp-text-link {
+      color: #9b641f;
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .exp-text-link:hover { text-decoration: underline; }
+
+    .exp-feature-grid {
+      max-width: 1380px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .exp-feature {
+      min-height: 142px;
+      display: grid;
+      grid-template-columns: 46% 54%;
+      position: relative;
+      overflow: hidden;
+      background: var(--exp-forest);
+      border-radius: 4px;
+      color: #fff;
+      isolation: isolate;
+    }
+
+    .exp-feature::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0 0 0 40%;
+      background: linear-gradient(90deg, transparent, rgba(13,33,28,.96) 48%);
+      pointer-events: none;
+    }
+
+    .exp-feature img {
+      width: 100%;
+      height: 100%;
+      min-height: 142px;
+      object-fit: cover;
+    }
+
+    .exp-feature-copy {
+      padding: 14px 26px 12px 10px;
+      align-self: center;
+      position: relative;
+    }
+
+    .exp-number {
+      display: block;
+      color: #e2b45e;
+      font: 500 12px "Playfair Display", Georgia, serif;
+      margin-bottom: 4px;
+    }
+
+    .exp-feature h3 {
+      margin: 0 0 6px;
+      color: #fff;
+      font: 500 19px/1.1 "Playfair Display", Georgia, serif;
+    }
+
+    .exp-feature p {
+      margin: 0 0 8px;
+      color: rgba(255,255,255,.84);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .exp-arrow {
+      position: absolute;
+      right: 10px;
+      bottom: 12px;
+      width: 29px;
+      height: 29px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--exp-gold);
+      color: #fff;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .exp-arrow:hover { background: #e0a94f; }
+
+    /* Groups and special occasions */
+    .exp-occasion {
+      padding: 30px 5% 32px;
+      background: linear-gradient(135deg, #eeeadf, #f8f5ee 58%, #e8e4d8);
+    }
+
+    .exp-occasion-layout {
+      max-width: 1380px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 210px minmax(0, 1fr) 250px;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .exp-occasion-intro { padding: 12px 0; }
+
+    .exp-occasion-intro h2 { font-size: clamp(27px, 3vw, 36px); }
+
+    .exp-occasion-intro p {
+      color: var(--exp-muted);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .exp-occasion-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .exp-occasion-card {
+      overflow: hidden;
+      border-radius: 30px 30px 18px 18px;
+      background: #fffdf8;
+      border: 1px solid rgba(213,204,185,.7);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .exp-occasion-card img {
+      width: 100%;
+      height: 112px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .exp-occasion-copy { padding: 12px 13px 14px; }
+
+    .exp-occasion-card h3 {
+      font: 500 18px/1.15 "Playfair Display", Georgia, serif;
+      margin: 0 0 7px;
+      color: #182a22;
+    }
+
+    .exp-occasion-card p {
+      color: var(--exp-muted);
+      font-size: 11px;
+      line-height: 1.5;
+      margin: 0 0 9px;
+    }
+
+    .exp-occasion-card a {
+      color: #9b641f;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .exp-occasion-card a:hover { text-decoration: underline; }
+
+    /* Additional services */
+    .exp-more {
+      border-left: 1px solid #d4cbbb;
+      padding-left: 20px;
+    }
+
+    .exp-more h3 {
+      margin: 3px 0 10px;
+      font: 600 10px "DM Sans", sans-serif;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #9b641f;
+    }
+
+    .exp-more-item {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) 14px;
+      gap: 10px;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid #e2dccf;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .exp-more-item:last-child { border-bottom: 0; }
+
+    .exp-more-item img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .exp-more-item strong {
+      display: block;
+      font: 500 14px "Playfair Display", Georgia, serif;
+      margin-bottom: 3px;
+    }
+
+    .exp-more-item small {
+      display: block;
+      font-size: 10px;
+      line-height: 1.4;
+      color: var(--exp-muted);
+    }
+
+    .exp-more-arrow { color: #b27b2c; }
+
+    /* WhatsApp call to action */
+    .exp-cta {
+      padding: 28px 6%;
+      color: #fff;
+      background:
+        linear-gradient(90deg, rgba(10,31,27,.88), rgba(10,31,27,.72)),
+        url("../images/Hero-slide/Destination-2-web.webp") center 55% / cover;
+    }
+
+    .exp-cta-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .exp-cta h2 {
+      margin: 0 0 6px;
+      font: 500 clamp(24px, 3vw, 34px)/1.1 "Playfair Display", Georgia, serif;
+      color: #fff;
+    }
+
+    .exp-cta p {
+      margin: 0;
+      max-width: 600px;
+      color: rgba(255,255,255,.84);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .exp-cta .exp-button { white-space: nowrap; }
+
+    @media (max-width: 1100px) {
+      .exp-occasion-layout { grid-template-columns: 180px minmax(0, 1fr); }
+      .exp-more {
+        grid-column: 1 / -1;
+        border-left: 0;
+        border-top: 1px solid #d4cbbb;
+        padding: 16px 0 0;
+      }
+      .exp-more-list {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0,1fr));
+        gap: 15px;
+      }
+      .exp-more-item { border-bottom: 0; }
+      .exp-feature-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 700px) {
+      .exp-hero { min-height: 300px; padding: 34px 6%; background-position: 58% center; }
+      .exp-hero h1 { font-size: clamp(37px, 10vw, 52px); }
+      .exp-hero p { font-size: 13px; }
+      .exp-benefits { grid-template-columns: repeat(2, 1fr); gap: 15px 8px; padding: 16px 5%; }
+      .exp-benefit { justify-content: flex-start; font-size: 10px; }
+      .exp-symbol { font-size: 20px; }
+      .exp-main { padding: 28px 5%; }
+      .exp-section-head { display: block; }
+      .exp-section-head p { margin-top: 12px; }
+      .exp-text-link { display: inline-block; margin-top: 12px; }
+      .exp-feature-grid { grid-template-columns: 1fr; gap: 10px; }
+      .exp-feature { min-height: 150px; grid-template-columns: 42% 58%; }
+      .exp-feature img { min-height: 150px; }
+      .exp-feature-copy { padding: 12px 26px 12px 10px; }
+      .exp-feature h3 { font-size: 18px; }
+      .exp-occasion { padding: 28px 5%; }
+      .exp-occasion-layout { grid-template-columns: 1fr; gap: 20px; }
+      .exp-occasion-intro h2 { max-width: 370px; }
+      .exp-occasion-cards { grid-template-columns: 1fr; }
+      .exp-occasion-card {
+        display: grid;
+        grid-template-columns: 38% 62%;
+        border-radius: 18px;
+      }
+      .exp-occasion-card img { height: 100%; min-height: 155px; }
+      .exp-occasion-copy { padding: 14px 12px; }
+      .exp-occasion-card h3 { font-size: 17px; }
+      .exp-more-list { grid-template-columns: 1fr; gap: 0; }
+      .exp-more-item { border-bottom: 1px solid #e2dccf; }
+      .exp-cta-inner { display: block; }
+      .exp-cta .exp-button { margin-top: 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .exp-button { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <a class="brand" href="../index.html" aria-label="Beta Bawarchi Group home">
+    <img src="../images/logo.png" alt="Beta Bawarchi Group" class="brand-logo">
+  </a>
+
+  <nav class="nav" aria-label="Main navigation">
+    <a href="../index.html#properties">Stays</a>
+    <a href="./" aria-current="page">Experiences</a>
+    <a href="../index.html#dining">Dining</a>
+    <a href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#enquiry">Enquire</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="exp-hero">
+    <div class="exp-hero-copy">
+      <div class="exp-kicker">Pachmarhi Experiences</div>
+      <h1>Discover Pachmarhi<br>Beyond Your Stay</h1>
+      <p>From misty waterfalls and forest trails to corporate retreats, school trips and destination celebrations, explore the best of Pachmarhi with Beta Bawarchi Group.</p>
+      <a class="exp-button" href="#experiences">Plan Your Experience →</a>
+    </div>
+  </section>
+
+  <!-- QUICK HIGHLIGHTS -->
+  <section class="exp-benefits" aria-label="Pachmarhi experience highlights">
+    <div class="exp-benefit"><span class="exp-symbol" aria-hidden="true">♧</span><span>Scenic Hill Station<br>in the Satpura Range</span></div>
+    <div class="exp-benefit"><span class="exp-symbol" aria-hidden="true">⌕</span><span>Nature &amp; Wildlife<br>Experiences</span></div>
+    <div class="exp-benefit"><span class="exp-symbol" aria-hidden="true">♧</span><span>Ideal for Groups,<br>Families &amp; Events</span></div>
+    <div class="exp-benefit"><span class="exp-symbol" aria-hidden="true">✧</span><span>Local Assistance<br>&amp; Trusted Partners</span></div>
+  </section>
+
+  <!-- SIX MAIN SERVICES -->
+  <section class="exp-main" id="experiences" aria-labelledby="exp-main-heading">
+    <div class="exp-section-head">
+      <div>
+        <div class="exp-kicker">Explore</div>
+        <h2 id="exp-main-heading">Pachmarhi Experiences</h2>
+      </div>
+      <p>From sightseeing to safari enquiries, camping and local activities, discover a range of experiences to make your Pachmarhi trip memorable.</p>
+      <a class="exp-text-link" href="#more-experiences">View All Experiences →</a>
+    </div>
+
+    <div class="exp-feature-grid">
+
+      <article class="exp-feature">
+        <img src="../images/Hero-slide/Destination-1-web.webp" alt="Waterfall and forest scenery for Pachmarhi sightseeing" loading="lazy">
+        <div class="exp-feature-copy"><span class="exp-number">01　♧</span><h3>Local Sightseeing</h3><p>Explore waterfalls, viewpoints and popular attractions with local assistance.</p></div>
+        <a class="exp-arrow" aria-label="Enquire about local sightseeing" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20Pachmarhi%20sightseeing." target="_blank" rel="noopener noreferrer">→</a>
+      </article>
+
+      <article class="exp-feature">
+        <img src="../images/Hero-slide/Destination-2-web.webp" alt="Forest route in the Satpura region" loading="lazy">
+        <div class="exp-feature-copy"><span class="exp-number">02　⌁</span><h3>Gypsy Safari Booking</h3><p>Enquire about permitted safari arrangements and availability.</p></div>
+        <a class="exp-arrow" aria-label="Enquire about gypsy safari booking" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20Gypsy%20safari%20booking." target="_blank" rel="noopener noreferrer">→</a>
+      </article>
+
+      <article class="exp-feature">
+        <img src="../images/Hero-slide/Destination-3-web.webp" alt="Outdoor camping experiences around Pachmarhi" loading="lazy">
+        <div class="exp-feature-copy"><span class="exp-number">03　△</span><h3>Night Camping</h3><p>Ask about camping experiences in and around Pachmarhi.</p></div>
+        <a class="exp-arrow" aria-label="Enquire about night camping" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20camping%20in%20Pachmarhi." target="_blank" rel="noopener noreferrer">→</a>
+      </article>
+
+      <article class="exp-feature">
+        <img src="../images/Hero-slide/Destination-2-web.webp" alt="Scenic roads for exploring Pachmarhi by bike" loading="lazy">
+        <div class="exp-feature-copy"><span class="exp-number">04　♧</span><h3>Bike Rental</h3><p>Explore Pachmarhi at your own pace with local rentals.</p></div>
+        <a class="exp-arrow" aria-label="Enquire about bike rental" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20bike%20rental%20in%20Pachmarhi." target="_blank" rel="noopener noreferrer">→</a>
+      </article>
+
+      <article class="exp-feature">
+        <img src="../images/Hero-slide/Destination-3-web.webp" alt="Local road transport around Pachmarhi" loading="lazy">
+        <div class="exp-feature-copy"><span class="exp-number">05　⌁</span><h3>Pickup &amp; Drop</h3><p>Local arrival and departure assistance for a hassle-free trip.</p></div>
+        <a class="exp-arrow" aria-label="Enquire about pickup and drop" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20pickup%20and%20drop%20in%20Pachmarhi." target="_blank" rel="noopener noreferrer">→</a>
+      </article>
+
+      <article class="exp-feature">
+        <img src="../images/Hero-slide/Destination-1-web.webp" alt="Travel connections for a Pachmarhi holiday" loading="lazy">
+        <div class="exp-feature-copy"><span class="exp-number">06　✈</span><h3>Airport Transfer</h3><p>Transfer assistance from Bhopal, Nagpur and other nearby airports.</p></div>
+        <a class="exp-arrow" aria-label="Enquire about airport transfer" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20airport%20transfer%20for%20Pachmarhi." target="_blank" rel="noopener noreferrer">→</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CORPORATE, SCHOOL AND WEDDING EXPERIENCES -->
+  <section class="exp-occasion" id="more-experiences" aria-labelledby="exp-occasion-heading">
+    <div class="exp-occasion-layout">
+
+      <div class="exp-occasion-intro">
+        <div class="exp-kicker">For Groups &amp; Special Occasions</div>
+        <h2 id="exp-occasion-heading">Make Your Pachmarhi Trip More Special</h2>
+        <p>Whether it’s a corporate retreat, school trip or destination wedding, Pachmarhi offers a scenic setting for memorable experiences.</p>
+        <a class="exp-button" href="https://wa.me/918085055993?text=I%20would%20like%20to%20discuss%20a%20group%20trip%20or%20event%20in%20Pachmarhi." target="_blank" rel="noopener noreferrer">Enquire for Your Group →</a>
+      </div>
+
+      <div class="exp-occasion-cards">
+
+        <article class="exp-occasion-card">
+          <img src="../images/Hero-slide/Destination-2-web.webp" alt="Nature-rich setting for corporate retreats in Pachmarhi" loading="lazy">
+          <div class="exp-occasion-copy">
+            <h3>Corporate Retreats &amp; Offsites</h3>
+            <p>A peaceful, nature-rich hill station for team bonding, strategy meetings and offsites. Discuss stays, activities and local arrangements with our team.</p>
+            <a href="https://wa.me/918085055993?text=Please%20share%20options%20for%20a%20corporate%20retreat%20or%20offsite%20in%20Pachmarhi." target="_blank" rel="noopener noreferrer">Learn More →</a>
+          </div>
+        </article>
+
+        <article class="exp-occasion-card">
+          <img src="../images/Hero-slide/Destination-3-web.webp" alt="Nature and outdoor learning for school trips to Pachmarhi" loading="lazy">
+          <div class="exp-occasion-copy">
+            <h3>School Trips &amp; Educational Tours</h3>
+            <p>Explore nature, heritage and outdoor activities in the Satpura region with a school group visit planned around your requirements.</p>
+            <a href="https://wa.me/918085055993?text=Please%20share%20options%20for%20a%20school%20trip%20or%20educational%20tour%20to%20Pachmarhi." target="_blank" rel="noopener noreferrer">Learn More →</a>
+          </div>
+        </article>
+
+        <article class="exp-occasion-card">
+          <img src="../images/Hero-slide/Destination-1-web.webp" alt="Scenic hill station setting for destination weddings in Pachmarhi" loading="lazy">
+          <div class="exp-occasion-copy">
+            <h3>Destination Weddings &amp; Celebrations</h3>
+            <p>A scenic hill-station setting for weddings, family gatherings and special celebrations. Ask about stays and local arrangements.</p>
+            <a href="https://wa.me/918085055993?text=Please%20share%20options%20for%20a%20destination%20wedding%20or%20celebration%20in%20Pachmarhi." target="_blank" rel="noopener noreferrer">Learn More →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <aside class="exp-more">
+        <h3>More to Explore</h3>
+        <div class="exp-more-list">
+
+          <a class="exp-more-item" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20adventure%20and%20nature%20activities%20in%20Pachmarhi." target="_blank" rel="noopener noreferrer">
+            <img src="../images/Hero-slide/Destination-2-web.webp" alt="" loading="lazy">
+            <span><strong>Adventure &amp; Nature Activities</strong><small>Guided treks, nature walks and outdoor experiences.</small></span>
+            <span class="exp-more-arrow">→</span>
+          </a>
+
+          <a class="exp-more-item" href="https://wa.me/918085055993?text=I%20would%20like%20to%20enquire%20about%20dining%20upgrades%20and%20food%20packages." target="_blank" rel="noopener noreferrer">
+            <img src="../images/Hero-slide/Destination-3-web.webp" alt="" loading="lazy">
+            <span><strong>Dining Upgrades</strong><small>Special dining, meal-plan upgrades and food packages.</small></span>
+            <span class="exp-more-arrow">→</span>
+          </a>
+
+          <a class="exp-more-item" href="https://wa.me/918085055993?text=Please%20share%20available%20half-day%20and%20full-day%20Pachmarhi%20sightseeing%20packages." target="_blank" rel="noopener noreferrer">
+            <img src="../images/Hero-slide/Destination-1-web.webp" alt="" loading="lazy">
+            <span><strong>Sightseeing Packages</strong><small>Half-day and full-day packages covering popular attractions.</small></span>
+            <span class="exp-more-arrow">→</span>
+          </a>
+
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- WHATSAPP CTA -->
+  <section class="exp-cta">
+    <div class="exp-cta-inner">
+      <div>
+        <h2>Need Help Planning Your Experience?</h2>
+        <p>Our team can help with sightseeing, safari enquiries, transport, camping, corporate offsites, school trips and other activities in Pachmarhi.</p>
+      </div>
+      <a class="exp-button" href="https://wa.me/918085055993?text=Hello%20Beta%20Bawarchi%20Group%2C%20please%20help%20me%20plan%20my%20Pachmarhi%20experience." target="_blank" rel="noopener noreferrer">☏ &nbsp; Enquire on WhatsApp →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="contact">
+  <div>
+    <div class="footer-brand">BETA BAWARCHI GROUP</div>
+    <p>People · Places · Experiences</p>
+  </div>
+
+  <div class="footer-contact">
+    <a href="mailto:sales@betabawarchigroup.com">sales@betabawarchigroup.com</a>
+    <a href="mailto:support@betabawarchigroup.com">support@betabawarchigroup.com</a>
+    <a href="https://wa.me/918085055993" target="_blank" rel="noopener noreferrer">WhatsApp · +91 80850 55993</a>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Beta Bawarchi Group</span>
+    <span>Pachmarhi, Madhya Pradesh</span>
+  </div>
+</footer>
+
+</body>
+</html>
+
