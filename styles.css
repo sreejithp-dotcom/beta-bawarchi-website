@@ -1541,3 +1541,88 @@ img {
         justify-content: flex-start;
     }
 }
+
+/* Mobile navigation menu */
+.mobile-menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 4px auto;
+    background: currentColor;
+    transition: transform 0.2s ease;
+}
+
+@media (max-width: 850px) {
+    .header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+        flex-shrink: 0;
+    }
+
+    .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 12px 5vw 20px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .nav.mobile-menu-open {
+        display: flex;
+    }
+
+    .nav a,
+    .nav a:not(.cta):not(.nav-book-now) {
+        display: block;
+        padding: 13px 5px;
+        font-size: 14px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .nav .cta {
+        align-self: flex-start;
+        margin-top: 12px;
+        padding: 10px 16px;
+        border: 1px solid var(--ink);
+    }
+
+    .nav .nav-book-now {
+        align-self: flex-start;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 560px) {
+    .header {
+        padding: 0 5vw;
+    }
+
+    .brand-logo {
+        width: 112px;
+        height: 44px;
+    }
+}
+
