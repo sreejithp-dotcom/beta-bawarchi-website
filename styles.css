@@ -1724,4 +1724,57 @@ img {
     }
 }
 
+/* Restore experience layout on hotel property pages */
+.experiences:not(#experiences) .experience-grid,
+section.experiences:not(#experiences) .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+}
+
+.experiences:not(#experiences) .experience {
+    min-width: 0;
+    padding: 28px;
+    background: var(--paper);
+}
+
+.experiences:not(#experiences) .experience span {
+    display: block;
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    margin-bottom: 18px;
+}
+
+.experiences:not(#experiences) .experience h3 {
+    font: 500 22px/1.25 var(--serif);
+    margin: 0 0 8px;
+}
+
+.experiences:not(#experiences) .experience p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (max-width: 850px) {
+    .experiences:not(#experiences) .experience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .experiences:not(#experiences) .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experiences:not(#experiences) .experience {
+        padding: 22px;
+    }
+}
+
+
 
