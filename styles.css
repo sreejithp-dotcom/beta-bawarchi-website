@@ -1712,3 +1712,16 @@ img {
     }
 }
 
+/* Fix Experiences heading on mobile */
+@media (max-width: 700px) {
+    .experience-intro h2 {
+        max-width: 280px;
+        line-height: 1.08;
+    }
+
+    .experience-intro h2 br {
+        display: block;
+    }
+}
+
+
