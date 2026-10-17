@@ -51,3 +51,45 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 5000);
 
 });
+
+/* =========================================================
+   MOBILE NAVIGATION MENU
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.querySelector(".mobile-menu-toggle");
+    const nav = document.querySelector("#main-navigation");
+
+    // Stop if the mobile menu elements are not on this page
+    if (!toggle || !nav) return;
+
+    // Open and close the menu
+    toggle.addEventListener("click", function () {
+        const isOpen = nav.classList.toggle("mobile-menu-open");
+
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute(
+            "aria-label",
+            isOpen ? "Close navigation menu" : "Open navigation menu"
+        );
+    });
+
+    // Close the menu when a navigation link is selected
+    nav.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            nav.classList.remove("mobile-menu-open");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "Open navigation menu");
+        });
+    });
+
+    // Close the menu when Escape is pressed
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            nav.classList.remove("mobile-menu-open");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.setAttribute("aria-label", "Open navigation menu");
+        }
+    });
+});
+
