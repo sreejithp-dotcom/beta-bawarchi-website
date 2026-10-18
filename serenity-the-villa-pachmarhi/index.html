@@ -1083,7 +1083,7 @@
       <div class="indp-room-modal__gallery">
         <div class="indp-room-modal__hero">
           <img id="roomModalImage"
-               src="../images/Serenity/Deluxe Room 1.png"
+               src="../images/Serenity/deluxe/Deluxe Room.jpg"
                alt="Deluxe AC room at Serenity The Villa">
 
           <button class="indp-room-modal__arrow indp-room-modal__arrow--prev"
@@ -1235,6 +1235,12 @@
 
   const $ = id => document.getElementById(id);
 
+  // Serenity gallery manifest and current gallery state.
+  const imageBase = '../images/Serenity/';
+  const manifestUrl = imageBase + 'gallery-manifest.json';
+  let photos = [];
+  let photoIndex = 0;
+
   const image = $('roomModalImage');
   const thumbnails = $('roomModalThumbnails');
   const photoCount = $('roomModalPhotoCount');
@@ -1245,9 +1251,10 @@
 
   const rooms = {
     'deluxe-ac': {
+      galleryKey: 'deluxe',
       title: 'Deluxe AC',
       eyebrow: 'DELUXE ROOM',
-      image: '../images/Serenity/Deluxe Room 1.png',
+      image: '../images/Serenity/deluxe/Deluxe Room.jpg',
       description:
         'Enjoy a comfortable air-conditioned stay at Serenity The Villa, Pachmarhi.',
       enquiryName: 'Deluxe AC',
@@ -1272,9 +1279,10 @@
     },
 
     'super-deluxe-ac': {
+      galleryKey: 'super_deluxe',
       title: 'Super Deluxe AC',
       eyebrow: 'SUPER DELUXE ROOM',
-      image: '../images/Serenity/Super Deluxe.png',
+      image: '../images/Serenity/super_deluxe/Super Deluxe.jpg',
       description:
         'Enjoy an air-conditioned stay with additional in-room conveniences at Serenity The Villa, Pachmarhi.',
       enquiryName: 'Super Deluxe AC',
@@ -1333,39 +1341,104 @@
     });
   }
 
-  function setRoomImage(room) {
-    image.src = room.image;
-    image.alt = room.title + ' at Serenity The Villa';
+  function showPhoto(index) {
+  if (!photos.length) return;
 
-    thumbnails.replaceChildren();
-    photoCount.textContent = '1 / 1';
+  photoIndex = (index + photos.length) % photos.length;
 
-    previousButton.hidden = true;
-    nextButton.hidden = true;
+  image.src = photos[photoIndex].src;
+  image.alt = photos[photoIndex].alt;
 
-    // A single thumbnail for the available room-card image.
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className =
-      'indp-room-modal__thumb is-active';
-    button.setAttribute('aria-label', 'View room photo');
+  photoCount.textContent =
+    (photoIndex + 1) + ' / ' + photos.length;
 
-    const thumb = document.createElement('img');
-    thumb.src = room.image;
-    thumb.alt = '';
-    thumb.loading = 'lazy';
+  thumbnails.querySelectorAll('button').forEach(
+    function (button, i) {
+      button.classList.toggle('is-active', i === photoIndex);
+    }
+  );
+}
 
-    button.appendChild(thumb);
-    button.addEventListener('click', function () {
-      image.src = room.image;
+function loadPhotos(roomKey, room) {
+  thumbnails.replaceChildren();
+  photos = [];
+  photoIndex = 0;
+
+  image.src = room.image;
+  image.alt = room.title;
+
+  photoCount.textContent = 'Loading photos…';
+  previousButton.hidden = true;
+  nextButton.hidden = true;
+
+  fetch(manifestUrl)
+    .then(function (response) {
+      if (!response.ok) {
+        throw new Error('Could not load gallery manifest');
+      }
+
+      return response.json();
+    })
+    .then(function (manifest) {
+      const entry = manifest[roomKey];
+
+      if (!entry || !Array.isArray(entry.files) ||
+          entry.files.length === 0) {
+        throw new Error('No photos found for ' + roomKey);
+      }
+
+      photos = entry.files.map(function (filename) {
+        return {
+          src: imageBase + entry.folder + filename,
+          alt: room.title + ' room photo'
+        };
+      });
+
+      photos.forEach(function (photo, i) {
+        const button = document.createElement('button');
+
+        button.type = 'button';
+        button.className = 'indp-room-modal__thumb';
+        button.setAttribute(
+          'aria-label',
+          'View photo ' + (i + 1)
+        );
+
+        const thumb = document.createElement('img');
+        thumb.src = photo.src;
+        thumb.alt = '';
+        thumb.loading = 'lazy';
+
+        thumb.addEventListener('error', function () {
+          button.hidden = true;
+        });
+
+        button.appendChild(thumb);
+
+        button.addEventListener('click', function () {
+          showPhoto(i);
+        });
+
+        thumbnails.appendChild(button);
+      });
+
+      previousButton.hidden = photos.length < 2;
+      nextButton.hidden = photos.length < 2;
+
+      showPhoto(0);
+    })
+    .catch(function (error) {
+      console.error('Serenity gallery error:', error);
+
+      photos = [{
+        src: room.image,
+        alt: room.title + ' room photo'
+      }];
+
+      thumbnails.replaceChildren();
+      photoCount.textContent = '1 / 1';
     });
-
-    thumbnails.appendChild(button);
-
-    image.onerror = function () {
-      console.error('Unable to load room image:', room.image);
-    };
-  }
+}
 
   function openModal(roomKey, trigger) {
     const room = rooms[roomKey];
@@ -1395,7 +1468,7 @@
       false
     );
 
-    setRoomImage(room);
+    loadPhotos(room.galleryKey, room);
 
     enquireLink.dataset.enquireRoom = room.enquiryName;
     bookLink.dataset.enquireRoom = room.enquiryName;
@@ -1430,6 +1503,15 @@
 
     closeModal();
   }
+
+  // Navigate through each room's gallery.
+  previousButton.addEventListener('click', function () {
+    showPhoto(photoIndex - 1);
+  });
+
+  nextButton.addEventListener('click', function () {
+    showPhoto(photoIndex + 1);
+  });
 
   // Open from the existing Serenity room cards.
   document.querySelectorAll('[data-serenity-room]').forEach(
