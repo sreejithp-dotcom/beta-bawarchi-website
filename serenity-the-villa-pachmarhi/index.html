@@ -1065,113 +1065,198 @@
 
     <script src="../script.js"></script>
 
+
 <!-- SERENITY ROOM DETAILS POPUP -->
-<div class="serenity-room-modal" id="serenityRoomModal" aria-hidden="true">
-  <div class="serenity-room-modal__backdrop" data-serenity-close></div>
+<div class="indp-room-modal" id="roomDetailsModal"
+     role="dialog" aria-modal="true" aria-hidden="true"
+     aria-labelledby="roomModalTitle">
 
-  <section
-    class="serenity-room-modal__dialog"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="serenityRoomTitle"
-  >
-    <button
-      class="serenity-room-modal__close"
-      type="button"
-      aria-label="Close room details"
-      data-serenity-close
-    >&times;</button>
+  <div class="indp-room-modal__shade" data-close-room-modal></div>
 
-    <div class="serenity-room-modal__layout">
-      <div class="serenity-room-modal__visual">
-        <div
-          class="serenity-room-modal__image"
-          id="serenityRoomImage"
-          role="img"
-          aria-label="Serenity The Villa room"
-        ></div>
+  <div class="indp-room-modal__dialog" role="document">
+    <button class="indp-room-modal__close" type="button"
+            data-close-room-modal aria-label="Close room details">
+      &times;
+    </button>
 
-        <a
-          class="serenity-room-modal__gallery"
-          id="serenityRoomGalleryLink"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-        >View Room Photos ↗</a>
+    <div class="indp-room-modal__top">
+      <div class="indp-room-modal__gallery">
+        <div class="indp-room-modal__hero">
+          <img id="roomModalImage"
+               src="../images/Serenity/Deluxe Room 1.png"
+               alt="Deluxe AC room at Serenity The Villa">
+
+          <button class="indp-room-modal__arrow indp-room-modal__arrow--prev"
+                  type="button" id="roomModalPrev"
+                  aria-label="Previous photo" hidden>&#8249;</button>
+
+          <button class="indp-room-modal__arrow indp-room-modal__arrow--next"
+                  type="button" id="roomModalNext"
+                  aria-label="Next photo" hidden>&#8250;</button>
+
+          <span class="indp-room-modal__counter"
+                id="roomModalPhotoCount">1 / 1</span>
+        </div>
+
+        <div class="indp-room-modal__thumbs"
+             id="roomModalThumbnails"></div>
       </div>
 
-      <div class="serenity-room-modal__content">
-        <small class="serenity-room-modal__eyebrow">SERENITY THE VILLA</small>
+      <div class="indp-room-modal__overview">
+        <p class="indp-room-modal__eyebrow" id="roomModalEyebrow">
+          SERENITY THE VILLA
+        </p>
 
-        <h2 id="serenityRoomTitle">Room Details</h2>
-        <p id="serenityRoomDescription"></p>
+        <h2 class="indp-room-modal__title" id="roomModalTitle">
+          Deluxe AC
+        </h2>
 
-        <div class="serenity-room-modal__specs">
-          <div>
-            <span>Room Size</span>
-            <strong id="serenityRoomSize">Please enquire</strong>
+        <p class="indp-room-modal__description"
+           id="roomModalDescription">
+          Comfortable air-conditioned accommodation in Pachmarhi.
+        </p>
+
+        <div class="indp-room-modal__facts">
+          <div class="indp-room-modal__fact">
+            <span class="indp-room-modal__fact-icon">▱</span>
+            <span class="indp-room-modal__fact-copy">
+              <span>Room Size</span>
+              <strong id="roomModalSize">Please enquire</strong>
+            </span>
           </div>
-          <div>
-            <span>Occupancy</span>
-            <strong id="serenityRoomOccupancy">Please enquire</strong>
+
+          <div class="indp-room-modal__fact">
+            <span class="indp-room-modal__fact-icon">♙</span>
+            <span class="indp-room-modal__fact-copy">
+              <span>Occupancy</span>
+              <strong id="roomModalOccupancy">Please enquire</strong>
+            </span>
           </div>
-          <div>
-            <span>Bed Type</span>
-            <strong id="serenityRoomBed">Please enquire</strong>
+
+          <div class="indp-room-modal__fact">
+            <span class="indp-room-modal__fact-icon">▤</span>
+            <span class="indp-room-modal__fact-copy">
+              <span>Bed Type</span>
+              <strong id="roomModalBedType">Please enquire</strong>
+            </span>
           </div>
-          <div>
-            <span>View</span>
-            <strong id="serenityRoomView">Please enquire</strong>
+
+          <div class="indp-room-modal__fact">
+            <span class="indp-room-modal__fact-icon">⌁</span>
+            <span class="indp-room-modal__fact-copy">
+              <span>View</span>
+              <strong id="roomModalView">Please enquire</strong>
+            </span>
           </div>
-        </div>
-
-        <div class="serenity-room-modal__section">
-          <h3>Room Amenities</h3>
-          <ul id="serenityRoomAmenities"></ul>
-        </div>
-
-        <div class="serenity-room-modal__section">
-          <h3>Highlights</h3>
-          <ul id="serenityRoomHighlights"></ul>
-        </div>
-
-        <div class="serenity-room-modal__actions">
-          <a
-            class="serenity-room-modal__book"
-            href="#enquiry"
-            data-serenity-book
-          >Book / Enquire</a>
-
-          <a
-            class="serenity-room-modal__whatsapp"
-            id="serenityRoomWhatsApp"
-            href="https://wa.me/918085055993"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Enquire on WhatsApp ↗</a>
         </div>
       </div>
     </div>
-  </section>
+
+    <div class="indp-room-modal__bottom">
+      <section class="indp-room-modal__amenities-panel">
+        <h3 class="indp-room-modal__heading">In-Room Amenities</h3>
+        <ul class="indp-room-modal__amenities"
+            id="roomModalAmenities"></ul>
+      </section>
+
+      <aside class="indp-room-modal__side">
+        <h3 class="indp-room-modal__heading">Room Highlights</h3>
+        <ul class="indp-room-modal__highlights"
+            id="roomModalHighlights"></ul>
+
+        <div class="indp-room-modal__actions">
+          <a class="indp-room-modal__book"
+             href="#enquiry" id="roomModalBook">
+            Book / Enquire
+          </a>
+
+          <a class="indp-room-modal__enquire"
+             href="#enquiry" id="roomModalEnquire">
+            Enquire
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <section class="indp-room-modal__facilities">
+      <h3 class="indp-room-modal__facilities-title">
+        Property Facilities
+        <small>(Common facilities)</small>
+      </h3>
+
+      <div class="indp-room-modal__facility-grid">
+        <div class="indp-room-modal__facility">
+          <span class="indp-room-modal__facility-icon">♨</span>
+          <span>
+            <strong>Restaurant</strong>
+            <small>Indian, Continental and Chinese cuisine</small>
+          </span>
+        </div>
+
+        <div class="indp-room-modal__facility">
+          <span class="indp-room-modal__facility-icon">▱</span>
+          <span>
+            <strong>Parking</strong>
+            <small>Shared parking outside the premises</small>
+          </span>
+        </div>
+
+        <div class="indp-room-modal__facility">
+          <span class="indp-room-modal__facility-icon">⌁</span>
+          <span>
+            <strong>Wi-Fi</strong>
+            <small>Wi-Fi availability as provided by the property</small>
+          </span>
+        </div>
+
+        <div class="indp-room-modal__facility">
+          <span class="indp-room-modal__facility-icon">♙</span>
+          <span>
+            <strong>24-Hour Reception</strong>
+            <small>Guest assistance</small>
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
+
+
+
 <!-- END SERENITY ROOM DETAILS POPUP -->
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const modal = document.getElementById('serenityRoomModal');
+(function () {
+  const modal = document.getElementById('roomDetailsModal');
+  if (!modal || modal.dataset.initialized === 'true') return;
 
-  if (!modal) {
-    console.error('Serenity room modal was not found.');
-    return;
-  }
+  modal.dataset.initialized = 'true';
 
-  const roomData = {
+  const $ = id => document.getElementById(id);
+
+  const image = $('roomModalImage');
+  const thumbnails = $('roomModalThumbnails');
+  const photoCount = $('roomModalPhotoCount');
+  const previousButton = $('roomModalPrev');
+  const nextButton = $('roomModalNext');
+  const enquireLink = $('roomModalEnquire');
+  const bookLink = $('roomModalBook');
+
+  const rooms = {
     'deluxe-ac': {
-      name: 'Deluxe AC',
+      title: 'Deluxe AC',
+      eyebrow: 'DELUXE ROOM',
+      image: '../images/Serenity/Deluxe Room 1.png',
       description:
         'Enjoy a comfortable air-conditioned stay at Serenity The Villa, Pachmarhi.',
-      imageClass: 'serenity-dummy-1',
+      enquiryName: 'Deluxe AC',
+      highlights: [
+        'Air-conditioned room',
+        'Private bathroom',
+        'Television and electric kettle',
+        'Free Wi-Fi'
+      ],
       amenities: [
         'Air Conditioning',
         'Free Wi-Fi',
@@ -1183,20 +1268,22 @@ document.addEventListener('DOMContentLoaded', function () {
         'Electric Kettle',
         'Iron / Ironing Board',
         'Blackout Curtains'
-      ],
-      highlights: [
-        'Air-conditioned room',
-        'Private bathroom',
-        'Television and electric kettle',
-        'Free Wi-Fi'
       ]
     },
 
     'super-deluxe-ac': {
-      name: 'Super Deluxe AC',
+      title: 'Super Deluxe AC',
+      eyebrow: 'SUPER DELUXE ROOM',
+      image: '../images/Serenity/Super Deluxe.png',
       description:
-        'Enjoy a comfortable air-conditioned stay with additional room amenities at Serenity The Villa, Pachmarhi.',
-      imageClass: 'serenity-dummy-2',
+        'Enjoy an air-conditioned stay with additional in-room conveniences at Serenity The Villa, Pachmarhi.',
+      enquiryName: 'Super Deluxe AC',
+      highlights: [
+        'Air-conditioned room',
+        'Private bathroom',
+        'Refrigerator and television',
+        'Free Wi-Fi'
+      ],
       amenities: [
         'Air Conditioning',
         'Free Wi-Fi',
@@ -1210,117 +1297,174 @@ document.addEventListener('DOMContentLoaded', function () {
         'Refrigerator',
         'Iron / Ironing Board',
         'Blackout Curtains'
-      ],
-      highlights: [
-        'Air-conditioned room',
-        'Private bathroom',
-        'Refrigerator and television',
-        'Free Wi-Fi'
       ]
     }
   };
 
-  function setText(id, text) {
-    const element = document.getElementById(id);
-    if (element) element.textContent = text;
-  }
+  const amenityIcons = [
+    '❄', '⌁', '⌂', '♨', '✧', '▤',
+    '▣', '☕', '⌁', '▥', '≋', '▱'
+  ];
 
-  function populateList(id, items) {
-    const list = document.getElementById(id);
-    if (!list) return;
+  let currentRoom = null;
+  let previousFocus = null;
 
-    list.replaceChildren();
+  function populateList(element, items, withIcons) {
+    element.replaceChildren();
 
-    items.forEach(function (item) {
+    items.forEach(function (item, index) {
       const li = document.createElement('li');
-      li.textContent = item;
-      list.appendChild(li);
+
+      if (withIcons) {
+        const icon = document.createElement('span');
+        icon.className = 'indp-room-modal__amenity-icon';
+        icon.setAttribute('aria-hidden', 'true');
+        icon.textContent = amenityIcons[index % amenityIcons.length];
+
+        const label = document.createElement('span');
+        label.textContent = item;
+
+        li.append(icon, label);
+      } else {
+        li.textContent = item;
+      }
+
+      element.appendChild(li);
     });
   }
 
-  function openModal(roomKey) {
-    const room = roomData[roomKey];
+  function setRoomImage(room) {
+    image.src = room.image;
+    image.alt = room.title + ' at Serenity The Villa';
 
-    if (!room) {
-      console.error('Room details not found:', roomKey);
-      return;
-    }
+    thumbnails.replaceChildren();
+    photoCount.textContent = '1 / 1';
 
-    setText('serenityRoomTitle', room.name);
-    setText('serenityRoomDescription', room.description);
-    setText('serenityRoomSize', 'Please enquire');
-    setText('serenityRoomOccupancy', 'Please enquire');
-    setText('serenityRoomBed', 'Please enquire');
-    setText('serenityRoomView', 'Please enquire');
+    previousButton.hidden = true;
+    nextButton.hidden = true;
 
-    populateList('serenityRoomAmenities', room.amenities);
-    populateList('serenityRoomHighlights', room.highlights);
+    // A single thumbnail for the available room-card image.
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className =
+      'indp-room-modal__thumb is-active';
+    button.setAttribute('aria-label', 'View room photo');
 
-    // Display the same room image used on the room card.
-    const roomCardImage = document.querySelector(
-      '.' + room.imageClass
+    const thumb = document.createElement('img');
+    thumb.src = room.image;
+    thumb.alt = '';
+    thumb.loading = 'lazy';
+
+    button.appendChild(thumb);
+    button.addEventListener('click', function () {
+      image.src = room.image;
+    });
+
+    thumbnails.appendChild(button);
+
+    image.onerror = function () {
+      console.error('Unable to load room image:', room.image);
+    };
+  }
+
+  function openModal(roomKey, trigger) {
+    const room = rooms[roomKey];
+    if (!room) return;
+
+    currentRoom = room;
+    previousFocus = trigger;
+
+    $('roomModalTitle').textContent = room.title;
+    $('roomModalEyebrow').textContent = room.eyebrow;
+    $('roomModalDescription').textContent = room.description;
+
+    $('roomModalSize').textContent = 'Please enquire';
+    $('roomModalOccupancy').textContent = 'Please enquire';
+    $('roomModalBedType').textContent = 'Please enquire';
+    $('roomModalView').textContent = 'Please enquire';
+
+    populateList(
+      $('roomModalAmenities'),
+      room.amenities,
+      true
     );
-    const popupImage = document.getElementById('serenityRoomImage');
 
-    if (roomCardImage && popupImage) {
-      const image = getComputedStyle(roomCardImage).backgroundImage;
-      popupImage.style.backgroundImage =
-        image && image !== 'none' ? image : '';
-    }
-
-    // Link to the property's full gallery page.
-    const galleryLink = document.getElementById(
-      'serenityRoomGalleryLink'
+    populateList(
+      $('roomModalHighlights'),
+      room.highlights,
+      false
     );
 
-    if (galleryLink) {
-      galleryLink.href = 'gallery/';
-    }
+    setRoomImage(room);
 
-    // Create the room-specific WhatsApp enquiry link.
-    const whatsappLink = document.getElementById(
-      'serenityRoomWhatsApp'
-    );
-
-    if (whatsappLink) {
-      const message =
-        'Hello, I would like to enquire about the ' +
-        room.name +
-        ' at Serenity The Villa, Pachmarhi.';
-
-      whatsappLink.href =
-        'https://wa.me/918085055993?text=' +
-        encodeURIComponent(message);
-    }
+    enquireLink.dataset.enquireRoom = room.enquiryName;
+    bookLink.dataset.enquireRoom = room.enquiryName;
 
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    const closeButton = modal.querySelector(
+      '.indp-room-modal__close'
+    );
+
+    if (closeButton) closeButton.focus();
   }
 
   function closeModal() {
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+
+    if (previousFocus) previousFocus.focus();
   }
 
-  // Open the popup when a room-details button is clicked.
+  function selectRoomAndClose(event) {
+    if (!currentRoom) return;
+
+    const roomSelect = $('room');
+
+    if (roomSelect) {
+      roomSelect.value = currentRoom.enquiryName;
+    }
+
+    closeModal();
+  }
+
+  // Open from the existing Serenity room cards.
   document.querySelectorAll('[data-serenity-room]').forEach(
     function (button) {
       button.addEventListener('click', function () {
-        openModal(button.dataset.serenityRoom);
+        openModal(button.dataset.serenityRoom, button);
       });
     }
   );
 
-  // Close via the close button or backdrop.
-  modal.querySelectorAll('[data-serenity-close]').forEach(
+  // Close button and backdrop.
+  modal.querySelectorAll('[data-close-room-modal]').forEach(
     function (element) {
       element.addEventListener('click', closeModal);
     }
   );
 
-  // Close with Escape.
+  // Select the room when Book / Enquire or Enquire is clicked.
+  bookLink.addEventListener('click', selectRoomAndClose);
+  enquireLink.addEventListener('click', selectRoomAndClose);
+
+  // Preserve the separate Enquire links on the room cards.
+  document.querySelectorAll('[data-serenity-enquire]').forEach(
+    function (link) {
+      link.addEventListener('click', function () {
+        const roomSelect = $('room');
+
+        if (roomSelect) {
+          roomSelect.value = link.dataset.serenityEnquire;
+        }
+      });
+    }
+  );
+
+  // Close using Escape.
   document.addEventListener('keydown', function (event) {
     if (
       event.key === 'Escape' &&
@@ -1329,36 +1473,7 @@ document.addEventListener('DOMContentLoaded', function () {
       closeModal();
     }
   });
-
-  // Select the room in the enquiry form.
-  const bookLink = modal.querySelector('[data-serenity-book]');
-
-  if (bookLink) {
-    bookLink.addEventListener('click', function () {
-      const title = document.getElementById('serenityRoomTitle');
-      const roomSelect = document.getElementById('room');
-
-      if (title && roomSelect) {
-        roomSelect.value = title.textContent.trim();
-      }
-
-      closeModal();
-    });
-  }
-
-  // Support the separate Enquire links on the room cards.
-  document.querySelectorAll('[data-serenity-enquire]').forEach(
-    function (link) {
-      link.addEventListener('click', function () {
-        const roomSelect = document.getElementById('room');
-
-        if (roomSelect) {
-          roomSelect.value = link.dataset.serenityEnquire;
-        }
-      });
-    }
-  );
-});
+})();
 </script>
 
 </body>
