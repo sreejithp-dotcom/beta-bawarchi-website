@@ -1157,16 +1157,208 @@
 <!-- END SERENITY ROOM DETAILS POPUP -->
 
 
-<script src="../script.js"></script>
-
-<!-- Your existing Serenity popup HTML stays here -->
-<div id="serenityRoomModal">
-  <!-- Keep all your existing popup content here -->
-</div>
-
-<!-- Paste the complete popup JavaScript here -->
 <script>
-  // Paste the full JavaScript code I shared above.
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('serenityRoomModal');
+
+  if (!modal) {
+    console.error('Serenity room modal was not found.');
+    return;
+  }
+
+  const roomData = {
+    'deluxe-ac': {
+      name: 'Deluxe AC',
+      description:
+        'Enjoy a comfortable air-conditioned stay at Serenity The Villa, Pachmarhi.',
+      imageClass: 'serenity-dummy-1',
+      amenities: [
+        'Air Conditioning',
+        'Free Wi-Fi',
+        'Private Bathroom',
+        'Hot & Cold Water',
+        'Toiletries',
+        'Towels',
+        'TV',
+        'Electric Kettle',
+        'Iron / Ironing Board',
+        'Blackout Curtains'
+      ],
+      highlights: [
+        'Air-conditioned room',
+        'Private bathroom',
+        'Television and electric kettle',
+        'Free Wi-Fi'
+      ]
+    },
+
+    'super-deluxe-ac': {
+      name: 'Super Deluxe AC',
+      description:
+        'Enjoy a comfortable air-conditioned stay with additional room amenities at Serenity The Villa, Pachmarhi.',
+      imageClass: 'serenity-dummy-2',
+      amenities: [
+        'Air Conditioning',
+        'Free Wi-Fi',
+        'Private Bathroom',
+        'Hairdryer',
+        'Hot & Cold Water',
+        'Toiletries',
+        'Towels',
+        'TV with Satellite/Cable',
+        'Electric Kettle',
+        'Refrigerator',
+        'Iron / Ironing Board',
+        'Blackout Curtains'
+      ],
+      highlights: [
+        'Air-conditioned room',
+        'Private bathroom',
+        'Refrigerator and television',
+        'Free Wi-Fi'
+      ]
+    }
+  };
+
+  function setText(id, text) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = text;
+  }
+
+  function populateList(id, items) {
+    const list = document.getElementById(id);
+    if (!list) return;
+
+    list.replaceChildren();
+
+    items.forEach(function (item) {
+      const li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+  }
+
+  function openModal(roomKey) {
+    const room = roomData[roomKey];
+
+    if (!room) {
+      console.error('Room details not found:', roomKey);
+      return;
+    }
+
+    setText('serenityRoomTitle', room.name);
+    setText('serenityRoomDescription', room.description);
+    setText('serenityRoomSize', 'Please enquire');
+    setText('serenityRoomOccupancy', 'Please enquire');
+    setText('serenityRoomBed', 'Please enquire');
+    setText('serenityRoomView', 'Please enquire');
+
+    populateList('serenityRoomAmenities', room.amenities);
+    populateList('serenityRoomHighlights', room.highlights);
+
+    // Display the same room image used on the room card.
+    const roomCardImage = document.querySelector(
+      '.' + room.imageClass
+    );
+    const popupImage = document.getElementById('serenityRoomImage');
+
+    if (roomCardImage && popupImage) {
+      const image = getComputedStyle(roomCardImage).backgroundImage;
+      popupImage.style.backgroundImage =
+        image && image !== 'none' ? image : '';
+    }
+
+    // Link to the property's full gallery page.
+    const galleryLink = document.getElementById(
+      'serenityRoomGalleryLink'
+    );
+
+    if (galleryLink) {
+      galleryLink.href = 'gallery/';
+    }
+
+    // Create the room-specific WhatsApp enquiry link.
+    const whatsappLink = document.getElementById(
+      'serenityRoomWhatsApp'
+    );
+
+    if (whatsappLink) {
+      const message =
+        'Hello, I would like to enquire about the ' +
+        room.name +
+        ' at Serenity The Villa, Pachmarhi.';
+
+      whatsappLink.href =
+        'https://wa.me/918085055993?text=' +
+        encodeURIComponent(message);
+    }
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Open the popup when a room-details button is clicked.
+  document.querySelectorAll('[data-serenity-room]').forEach(
+    function (button) {
+      button.addEventListener('click', function () {
+        openModal(button.dataset.serenityRoom);
+      });
+    }
+  );
+
+  // Close via the close button or backdrop.
+  modal.querySelectorAll('[data-serenity-close]').forEach(
+    function (element) {
+      element.addEventListener('click', closeModal);
+    }
+  );
+
+  // Close with Escape.
+  document.addEventListener('keydown', function (event) {
+    if (
+      event.key === 'Escape' &&
+      modal.classList.contains('is-open')
+    ) {
+      closeModal();
+    }
+  });
+
+  // Select the room in the enquiry form.
+  const bookLink = modal.querySelector('[data-serenity-book]');
+
+  if (bookLink) {
+    bookLink.addEventListener('click', function () {
+      const title = document.getElementById('serenityRoomTitle');
+      const roomSelect = document.getElementById('room');
+
+      if (title && roomSelect) {
+        roomSelect.value = title.textContent.trim();
+      }
+
+      closeModal();
+    });
+  }
+
+  // Support the separate Enquire links on the room cards.
+  document.querySelectorAll('[data-serenity-enquire]').forEach(
+    function (link) {
+      link.addEventListener('click', function () {
+        const roomSelect = document.getElementById('room');
+
+        if (roomSelect) {
+          roomSelect.value = link.dataset.serenityEnquire;
+        }
+      });
+    }
+  );
+});
 </script>
 
 </body>
