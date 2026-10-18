@@ -2742,4 +2742,364 @@ section.experiences:not(#experiences) .experience-grid {
   }
 }
 
+/* =========================================
+   SERENITY THE VILLA — ROOM DETAILS POPUP
+   ========================================= */
+
+.serenity-room-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: var(--sans, Arial, sans-serif);
+}
+
+.serenity-room-modal.is-open {
+  display: flex;
+}
+
+.serenity-room-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 24, 21, 0.76);
+  backdrop-filter: blur(4px);
+}
+
+.serenity-room-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1000px);
+  max-height: min(88vh, 850px);
+  overflow-y: auto;
+  background: var(--white, #fff);
+  color: var(--ink, #20201d);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
+  animation: serenityPopupIn 0.25s ease-out;
+}
+
+.serenity-room-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line, #ded9cf);
+  border-radius: 50%;
+  background: var(--white, #fff);
+  color: var(--ink, #20201d);
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.serenity-room-modal__close:hover {
+  background: var(--ink, #20201d);
+  color: #fff;
+}
+
+.serenity-room-modal__layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  min-height: 500px;
+}
+
+.serenity-room-modal__visual {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--paper, #f7f5ef);
+}
+
+.serenity-room-modal__image {
+  flex: 1;
+  min-height: 390px;
+  background-color: #e9e5dc;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.serenity-room-modal__gallery {
+  display: block;
+  padding: 17px 20px;
+  color: var(--ink, #20201d);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  border-top: 1px solid var(--line, #ded9cf);
+  transition: color 0.2s ease;
+}
+
+.serenity-room-modal__gallery:hover {
+  color: var(--gold, #a57d42);
+}
+
+.serenity-room-modal__content {
+  min-width: 0;
+  padding: 42px 36px 34px;
+}
+
+.serenity-room-modal__eyebrow {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--gold, #a57d42);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+}
+
+.serenity-room-modal__content h2 {
+  margin: 0 36px 12px 0;
+  color: var(--ink, #20201d);
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.serenity-room-modal__content > p {
+  margin: 0 0 24px;
+  color: var(--muted, #6f6d67);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.serenity-room-modal__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 26px;
+  border-top: 1px solid var(--line, #ded9cf);
+  border-left: 1px solid var(--line, #ded9cf);
+}
+
+.serenity-room-modal__specs > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  padding: 14px;
+  border-right: 1px solid var(--line, #ded9cf);
+  border-bottom: 1px solid var(--line, #ded9cf);
+}
+
+.serenity-room-modal__specs span {
+  color: var(--muted, #6f6d67);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.serenity-room-modal__specs strong {
+  color: var(--ink, #20201d);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.serenity-room-modal__section {
+  margin-top: 24px;
+}
+
+.serenity-room-modal__section h3 {
+  margin: 0 0 14px;
+  color: var(--ink, #20201d);
+  font-family: var(--serif, Georgia, serif);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.serenity-room-modal__section ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 11px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.serenity-room-modal__section li {
+  position: relative;
+  padding-left: 17px;
+  color: var(--muted, #6f6d67);
+  font-size: 12px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.serenity-room-modal__section li::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--gold, #a57d42);
+  content: "✓";
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.serenity-room-modal__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.serenity-room-modal__actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 46px;
+  padding: 12px 14px;
+  border: 1px solid var(--ink, #20201d);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.serenity-room-modal__book {
+  background: var(--ink, #20201d);
+  color: #fff;
+}
+
+.serenity-room-modal__book:hover {
+  border-color: var(--gold, #a57d42);
+  background: var(--gold, #a57d42);
+}
+
+.serenity-room-modal__whatsapp {
+  background: transparent;
+  color: var(--ink, #20201d);
+}
+
+.serenity-room-modal__whatsapp:hover {
+  background: var(--paper, #f7f5ef);
+}
+
+@keyframes serenityPopupIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TABLET */
+@media (max-width: 800px) {
+  .serenity-room-modal {
+    padding: 18px;
+  }
+
+  .serenity-room-modal__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .serenity-room-modal__image {
+    flex: none;
+    min-height: 300px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .serenity-room-modal__content {
+    padding: 30px 28px;
+  }
+
+  .serenity-room-modal__content h2 {
+    font-size: 30px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 520px) {
+  .serenity-room-modal {
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .serenity-room-modal__dialog {
+    max-height: calc(100dvh - 20px);
+  }
+
+  .serenity-room-modal__close {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 25px;
+  }
+
+  .serenity-room-modal__image {
+    min-height: 220px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .serenity-room-modal__gallery {
+    padding: 13px 16px;
+  }
+
+  .serenity-room-modal__content {
+    padding: 26px 20px 24px;
+  }
+
+  .serenity-room-modal__content h2 {
+    margin-right: 30px;
+    font-size: 27px;
+  }
+
+  .serenity-room-modal__content > p {
+    font-size: 12px;
+  }
+
+  .serenity-room-modal__specs > div {
+    padding: 12px 10px;
+  }
+
+  .serenity-room-modal__section h3 {
+    font-size: 20px;
+  }
+
+  .serenity-room-modal__section ul {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .serenity-room-modal__actions {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .serenity-room-modal__dialog {
+    animation: none;
+  }
+
+  .serenity-room-modal__close,
+  .serenity-room-modal__gallery,
+  .serenity-room-modal__actions a {
+    transition: none;
+  }
+}
+
 
