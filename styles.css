@@ -3101,5 +3101,11 @@ section.experiences:not(#experiences) .experience-grid {
     transition: none;
   }
 }
+.serenity-room-modal {
+  display: none;
+}
 
+.serenity-room-modal.is-open {
+  display: flex;
+}
 
