@@ -341,12 +341,6 @@
         </a>
       </div>
 
-      <a class="photo-link"
-         href="https://photos.app.goo.gl/E95s5JGiHf3euTji7"
-         target="_blank"
-         rel="noopener noreferrer">
-        View Google Photos →
-      </a>
     </div>
   </article>
 
@@ -389,12 +383,6 @@
         </a>
       </div>
 
-      <a class="photo-link"
-         href="https://photos.app.goo.gl/t5vaqCbQv2bvzqkr7"
-         target="_blank"
-         rel="noopener noreferrer">
-        View Google Photos →
-      </a>
     </div>
   </article>
 
@@ -1076,6 +1064,97 @@
     ====================================================== -->
 
     <script src="../script.js"></script>
+
+<!-- SERENITY ROOM DETAILS POPUP -->
+<div class="serenity-room-modal" id="serenityRoomModal" aria-hidden="true">
+  <div class="serenity-room-modal__backdrop" data-serenity-close></div>
+
+  <section
+    class="serenity-room-modal__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="serenityRoomTitle"
+  >
+    <button
+      class="serenity-room-modal__close"
+      type="button"
+      aria-label="Close room details"
+      data-serenity-close
+    >&times;</button>
+
+    <div class="serenity-room-modal__layout">
+      <div class="serenity-room-modal__visual">
+        <div
+          class="serenity-room-modal__image"
+          id="serenityRoomImage"
+          role="img"
+          aria-label="Serenity The Villa room"
+        ></div>
+
+        <a
+          class="serenity-room-modal__gallery"
+          id="serenityRoomGalleryLink"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+        >View Room Photos ↗</a>
+      </div>
+
+      <div class="serenity-room-modal__content">
+        <small class="serenity-room-modal__eyebrow">SERENITY THE VILLA</small>
+
+        <h2 id="serenityRoomTitle">Room Details</h2>
+        <p id="serenityRoomDescription"></p>
+
+        <div class="serenity-room-modal__specs">
+          <div>
+            <span>Room Size</span>
+            <strong id="serenityRoomSize">Please enquire</strong>
+          </div>
+          <div>
+            <span>Occupancy</span>
+            <strong id="serenityRoomOccupancy">Please enquire</strong>
+          </div>
+          <div>
+            <span>Bed Type</span>
+            <strong id="serenityRoomBed">Please enquire</strong>
+          </div>
+          <div>
+            <span>View</span>
+            <strong id="serenityRoomView">Please enquire</strong>
+          </div>
+        </div>
+
+        <div class="serenity-room-modal__section">
+          <h3>Room Amenities</h3>
+          <ul id="serenityRoomAmenities"></ul>
+        </div>
+
+        <div class="serenity-room-modal__section">
+          <h3>Highlights</h3>
+          <ul id="serenityRoomHighlights"></ul>
+        </div>
+
+        <div class="serenity-room-modal__actions">
+          <a
+            class="serenity-room-modal__book"
+            href="#enquiry"
+            data-serenity-book
+          >Book / Enquire</a>
+
+          <a
+            class="serenity-room-modal__whatsapp"
+            id="serenityRoomWhatsApp"
+            href="https://wa.me/918085055993"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Enquire on WhatsApp ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- END SERENITY ROOM DETAILS POPUP -->
 
 
 </body>
