@@ -1291,6 +1291,286 @@
 
     <script src="../script.js"></script>
 
+<div class="indp-room-modal" id="roomDetailsModal" role="dialog"
+     aria-modal="true" aria-hidden="true" aria-labelledby="roomModalTitle">
+  <div class="indp-room-modal__shade" data-close-room-modal></div>
+  <div class="indp-room-modal__dialog" role="document">
+    <button class="indp-room-modal__close" type="button"
+            data-close-room-modal aria-label="Close room details">&times;</button>
+
+    <div class="indp-room-modal__top">
+      <div class="indp-room-modal__gallery">
+        <div class="indp-room-modal__hero">
+          <img id="roomModalImage"
+               src="../images/indraprastha/executive-ac-web.webp"
+               alt="Executive AC room at Hotel Indraprastha Luxuria">
+          <button class="indp-room-modal__arrow indp-room-modal__arrow--prev"
+                  type="button" id="roomModalPrev" aria-label="Previous photo">&#8249;</button>
+          <button class="indp-room-modal__arrow indp-room-modal__arrow--next"
+                  type="button" id="roomModalNext" aria-label="Next photo">&#8250;</button>
+          <span class="indp-room-modal__counter" id="roomModalPhotoCount">1 / 1</span>
+        </div>
+        <div class="indp-room-modal__thumbs" id="roomModalThumbnails"></div>
+      </div>
+
+      <div class="indp-room-modal__overview">
+        <p class="indp-room-modal__eyebrow" id="roomModalEyebrow">EXECUTIVE ROOM</p>
+        <h2 class="indp-room-modal__title" id="roomModalTitle">Executive AC</h2>
+        <p class="indp-room-modal__description" id="roomModalDescription">
+          A comfortable air-conditioned room with essential amenities for a relaxing stay in Pachmarhi.
+        </p>
+        <div class="indp-room-modal__facts">
+          <div class="indp-room-modal__fact"><span class="indp-room-modal__fact-icon">▱</span><span class="indp-room-modal__fact-copy"><span>Room Size</span><strong id="roomModalSize"></strong></span></div>
+          <div class="indp-room-modal__fact"><span class="indp-room-modal__fact-icon">♙</span><span class="indp-room-modal__fact-copy"><span>Occupancy</span><strong id="roomModalOccupancy"></strong></span></div>
+          <div class="indp-room-modal__fact"><span class="indp-room-modal__fact-icon">▤</span><span class="indp-room-modal__fact-copy"><span>Bed Type</span><strong id="roomModalBedType"></strong></span></div>
+          <div class="indp-room-modal__fact"><span class="indp-room-modal__fact-icon">⌁</span><span class="indp-room-modal__fact-copy"><span>View</span><strong id="roomModalView"></strong></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="indp-room-modal__bottom">
+      <section class="indp-room-modal__amenities-panel">
+        <h3 class="indp-room-modal__heading">In-Room Amenities</h3>
+        <ul class="indp-room-modal__amenities" id="roomModalAmenities"></ul>
+      </section>
+      <aside class="indp-room-modal__side">
+        <h3 class="indp-room-modal__heading">Room Highlights</h3>
+        <ul class="indp-room-modal__highlights" id="roomModalHighlights"></ul>
+        <div class="indp-room-modal__actions">
+          <a class="indp-room-modal__book"
+             href="https://letsbook.me/booking/hotelindraprasthaluxuria"
+             target="_blank" rel="noopener noreferrer">Book Now</a>
+          <a class="indp-room-modal__enquire" id="roomModalEnquire"
+             href="#enquiry">Enquire</a>
+        </div>
+      </aside>
+    </div>
+
+    <section class="indp-room-modal__facilities">
+      <h3 class="indp-room-modal__facilities-title">Property Facilities <small>(Common facilities)</small></h3>
+      <div class="indp-room-modal__facility-grid">
+        <div class="indp-room-modal__facility"><span class="indp-room-modal__facility-icon">♨</span><span><strong>Restaurant</strong><small>Indian, Continental and Chinese cuisine</small></span></div>
+        <div class="indp-room-modal__facility"><span class="indp-room-modal__facility-icon">▱</span><span><strong>Parking</strong><small>Shared parking outside the premises</small></span></div>
+        <div class="indp-room-modal__facility"><span class="indp-room-modal__facility-icon">⌁</span><span><strong>Wi-Fi</strong><small>Free Wi-Fi in common areas</small></span></div>
+        <div class="indp-room-modal__facility"><span class="indp-room-modal__facility-icon">♙</span><span><strong>24-Hour Reception</strong><small>Hindi and English assistance</small></span></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(function () {
+  const modal = document.getElementById("roomDetailsModal");
+  if (!modal || modal.dataset.initialized === "true") return;
+  modal.dataset.initialized = "true";
+
+  const get = id => document.getElementById(id);
+  const image = get("roomModalImage");
+  const thumbs = get("roomModalThumbnails");
+  const title = get("roomModalTitle");
+  const eyebrow = get("roomModalEyebrow");
+  const description = get("roomModalDescription");
+  const photoCount = get("roomModalPhotoCount");
+  const amenitiesList = get("roomModalAmenities");
+  const highlightsList = get("roomModalHighlights");
+  const enquireLink = get("roomModalEnquire");
+  const prev = get("roomModalPrev");
+  const next = get("roomModalNext");
+  const imageBase = "../images/indraprastha/";
+  const manifestUrl = imageBase + "gallery-manifest.json";
+
+  const rooms = {
+    "executive-ac": {
+      title: "Executive AC", eyebrow: "EXECUTIVE ROOM",
+      size: "250 sq.ft", occupancy: "02 Adults + 01 Child",
+      bedType: "King Bed", view: "No View",
+      description: "A comfortable air-conditioned room with essential amenities for a relaxing stay in Pachmarhi.",
+      enquiryName: "Executive AC",
+      highlights: ["Air-conditioned comfort", "Private bathroom", "Television and electric kettle", "Free Wi-Fi"],
+      amenities: ["Air Conditioning", "Free Wi-Fi", "Private Bathroom", "Hot & Cold Water", "Toiletries", "Towels", "TV", "Electric Kettle", "Iron / Ironing Board", "Blackout Curtains"],
+      fallback: "executive-ac-web.webp"
+    },
+    "executive-front": {
+      title: "Executive AC Front View", eyebrow: "FRONT VIEW ROOM",
+      size: "250 sq.ft", occupancy: "02 Adults + 01 Child",
+      bedType: "King Bed", view: "Front View",
+      description: "An air-conditioned room category with front-view positioning and added in-room conveniences.",
+      enquiryName: "Executive AC Front View",
+      highlights: ["Front-view room category", "Private bathroom", "Refrigerator and television", "Free Wi-Fi"],
+      amenities: ["Air Conditioning", "Free Wi-Fi", "Private Bathroom", "Hairdryer", "Hot & Cold Water", "Toiletries", "Towels", "TV with Satellite/Cable", "Electric Kettle", "Refrigerator", "Iron / Ironing Board", "Blackout Curtains"],
+      fallback: "executive-front-web.webp"
+    },
+    "luxury-balcony": {
+      title: "Executive Luxury (Balcony)", eyebrow: "BALCONY ROOM",
+      size: "250 sq.ft", occupancy: "03 Adults + 01 Child",
+      bedType: "King Bed", view: "Street View",
+      description: "An air-conditioned room with a private balcony and a range of everyday comforts.",
+      enquiryName: "Executive Luxury Balcony View",
+      highlights: ["Private balcony", "Private bathroom", "Refrigerator and television", "Free Wi-Fi"],
+      amenities: ["Private Balcony", "Air Conditioning", "Free Wi-Fi", "Private Bathroom", "Hairdryer", "Hot & Cold Water", "Toiletries", "Towels", "TV", "Electric Kettle", "Refrigerator", "Iron / Ironing Board", "Blackout Curtains"],
+      fallback: "luxury-balcony-web.webp"
+    },
+    "mountain-view": {
+      title: "Mountain View Room (Balcony)", eyebrow: "MOUNTAIN VIEW ROOM",
+      size: "250 sq.ft", occupancy: "03 Adults + 01 Child",
+      bedType: "King Bed", view: "Mountain View",
+      description: "A balcony room category for guests looking for a mountain-view stay in Pachmarhi.",
+      enquiryName: "Mountain View Room (Balcony)",
+      highlights: ["Balcony room category", "Mountain-view category", "Private bathroom", "Free Wi-Fi"],
+      amenities: ["Private Balcony", "Mountain-View Room Category", "Air Conditioning", "Free Wi-Fi", "Private Bathroom", "Hairdryer", "Hot & Cold Water", "Toiletries", "Towels", "TV", "Electric Kettle", "Refrigerator", "Iron / Ironing Board", "Blackout Curtains"],
+      fallback: "mountain-view-web.webp"
+    },
+    "royale-suite": {
+      title: "Royale Suite (Balcony)", eyebrow: "ROYALE SUITE",
+      size: "250 sq.ft", occupancy: "04 Adults + 01 Child",
+      bedType: "King Bed", view: "Mountain View",
+      description: "A suite category with a private balcony and a selection of in-room comforts.",
+      enquiryName: "Royale Suite (Balcony)",
+      highlights: ["Suite category with balcony", "Private bathroom", "Refrigerator and television", "Free Wi-Fi"],
+      amenities: ["Private Balcony", "Air Conditioning", "Free Wi-Fi", "Private Bathroom", "Hairdryer", "Hot & Cold Water", "Toiletries", "Towels", "TV", "Electric Kettle", "Refrigerator", "Iron / Ironing Board", "Blackout Curtains"],
+      fallback: "royale-suite-web.webp"
+    }
+  };
+
+  let photos = [];
+  let photoIndex = 0;
+  let previousFocus = null;
+  const icons = ["❄", "⌁", "⌂", "♨", "✧", "▤", "▣", "☕", "⌁", "▥", "≋", "▱", "▤"];
+
+  function showPhoto(index) {
+    if (!photos.length) return;
+    photoIndex = (index + photos.length) % photos.length;
+    image.src = photos[photoIndex].src;
+    image.alt = photos[photoIndex].alt;
+    photoCount.textContent = (photoIndex + 1) + " / " + photos.length;
+    thumbs.querySelectorAll("button").forEach((button, i) => {
+      button.classList.toggle("is-active", i === photoIndex);
+    });
+  }
+
+  function loadPhotos(key, room) {
+    thumbs.replaceChildren();
+    photos = [];
+    photoIndex = 0;
+    image.src = imageBase + room.fallback;
+    image.alt = room.title;
+    photoCount.textContent = "1 / 1";
+    prev.hidden = true;
+    next.hidden = true;
+
+    fetch(manifestUrl)
+      .then(response => {
+        if (!response.ok) throw new Error("Gallery manifest unavailable");
+        return response.json();
+      })
+      .then(manifest => {
+        const entry = manifest[key];
+        if (!entry || !Array.isArray(entry.files) || !entry.files.length) {
+          throw new Error("No gallery photos listed for " + key);
+        }
+        const folder = entry.folder || key + "/";
+        photos = entry.files.map(filename => ({
+          src: imageBase + folder + filename,
+          alt: room.title + " photo"
+        }));
+
+        photos.forEach((photo, i) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "indp-room-modal__thumb";
+          button.setAttribute("aria-label", "View photo " + (i + 1));
+          const thumb = document.createElement("img");
+          thumb.src = photo.src;
+          thumb.alt = "";
+          thumb.loading = "lazy";
+          thumb.addEventListener("error", () => { button.hidden = true; });
+          button.appendChild(thumb);
+          button.addEventListener("click", () => showPhoto(i));
+          thumbs.appendChild(button);
+        });
+
+        prev.hidden = photos.length < 2;
+        next.hidden = photos.length < 2;
+        showPhoto(0);
+      })
+      .catch(error => {
+        console.warn("Room gallery unavailable:", error);
+        thumbs.replaceChildren();
+      });
+  }
+
+  function openModal(key, trigger) {
+    const room = rooms[key];
+    if (!room) {
+      console.error("No room data for key:", key);
+      return;
+    }
+
+    previousFocus = trigger;
+    title.textContent = room.title;
+    eyebrow.textContent = room.eyebrow;
+    description.textContent = room.description;
+    get("roomModalSize").textContent = room.size;
+    get("roomModalOccupancy").textContent = room.occupancy;
+    get("roomModalBedType").textContent = room.bedType;
+    get("roomModalView").textContent = room.view;
+
+    amenitiesList.replaceChildren();
+    room.amenities.forEach((name, i) => {
+      const li = document.createElement("li");
+      const icon = document.createElement("span");
+      icon.className = "indp-room-modal__amenity-icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.textContent = icons[i % icons.length];
+      const label = document.createElement("span");
+      label.textContent = name;
+      li.append(icon, label);
+      amenitiesList.appendChild(li);
+    });
+
+    highlightsList.replaceChildren();
+    room.highlights.forEach(name => {
+      const li = document.createElement("li");
+      li.textContent = name;
+      highlightsList.appendChild(li);
+    });
+
+    enquireLink.dataset.enquireRoom = room.enquiryName;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    loadPhotos(key, room);
+    modal.querySelector(".indp-room-modal__close").focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (previousFocus) previousFocus.focus();
+  }
+
+  document.querySelectorAll("[data-room-details]").forEach(button => {
+    button.addEventListener("click", () => openModal(button.dataset.roomDetails, button));
+  });
+
+  modal.querySelectorAll("[data-close-room-modal]").forEach(element => {
+    element.addEventListener("click", closeModal);
+  });
+
+  prev.addEventListener("click", () => showPhoto(photoIndex - 1));
+  next.addEventListener("click", () => showPhoto(photoIndex + 1));
+  enquireLink.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", event => {
+    if (!modal.classList.contains("is-open")) return;
+    if (event.key === "Escape") closeModal();
+    if (event.key === "ArrowLeft") showPhoto(photoIndex - 1);
+    if (event.key === "ArrowRight") showPhoto(photoIndex + 1);
+  });
+})();
+</script>
+
 
 </body>
 
