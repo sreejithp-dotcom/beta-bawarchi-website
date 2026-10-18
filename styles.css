@@ -2541,4 +2541,205 @@ section.experiences:not(#experiences) .experience-grid {
 }
 
 
+/* =========================================
+   SERENITY — ROOM CARDS
+   ========================================= */
+
+/* Room card layout */
+.rooms .room-grid .room {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  background: var(--white, #fff);
+}
+
+.rooms .room-grid .room-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 24px;
+  gap: 14px;
+}
+
+.rooms .room-grid .room-body h3 {
+  margin: 0;
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.rooms .room-grid .room-body > small {
+  color: var(--gold, #a57d42);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+}
+
+.rooms .room-grid .room-body p {
+  margin: 0;
+  color: var(--muted, #6f6d67);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Short amenities list */
+.rooms .room-feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  width: 100%;
+  margin: 4px 0;
+}
+
+.rooms .room-feature-list > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted, #6f6d67);
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rooms .room-feature-list > span > span {
+  color: var(--gold, #a57d42);
+  font-size: 15px;
+}
+
+/* View Room Details button */
+.rooms .room-details-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 46px;
+  margin-top: 4px;
+  padding: 12px 18px;
+  border: 1px solid var(--ink, #20201d);
+  background: var(--ink, #20201d);
+  color: #fff;
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.rooms .room-details-btn:hover {
+  background: var(--gold, #a57d42);
+  border-color: var(--gold, #a57d42);
+}
+
+/* Book Now and Enquire buttons */
+.rooms .room-booking-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.rooms .room-booking-actions a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 43px;
+  padding: 10px 12px;
+  border: 1px solid var(--ink, #20201d);
+  text-align: center;
+  text-decoration: none;
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  transition: background .2s ease, color .2s ease;
+}
+
+.rooms .room-booking-actions .room-book-btn {
+  background: var(--ink, #20201d);
+  color: #fff;
+}
+
+.rooms .room-booking-actions .room-book-btn:hover {
+  background: var(--gold, #a57d42);
+  border-color: var(--gold, #a57d42);
+}
+
+.rooms .room-booking-actions .room-enquire-btn {
+  background: transparent;
+  color: var(--ink, #20201d);
+}
+
+.rooms .room-booking-actions .room-enquire-btn:hover {
+  background: var(--paper, #f7f5ef);
+}
+
+/* Full room gallery link */
+.rooms .room-body .photo-link {
+  display: inline-block;
+  margin-top: 2px;
+  color: var(--gold, #a57d42);
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.rooms .room-body .photo-link:hover {
+  text-decoration: underline;
+}
+
+/* Keep room cards visually consistent */
+.rooms .room-grid .room-photo {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Tablet */
+@media (max-width: 850px) {
+  .rooms .room-grid .room-body {
+    padding: 20px;
+  }
+
+  .rooms .room-feature-list {
+    gap: 9px 12px;
+  }
+
+  .rooms .room-booking-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .rooms .room-grid .room-body {
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .rooms .room-grid .room-body h3 {
+    font-size: 24px;
+  }
+
+  .rooms .room-feature-list {
+    gap: 10px 14px;
+  }
+
+  .rooms .room-feature-list > span {
+    font-size: 12px;
+  }
+
+  .rooms .room-booking-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .rooms .room-details-btn {
+    min-height: 44px;
+  }
+}
+
 
