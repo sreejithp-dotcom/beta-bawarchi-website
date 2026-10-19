@@ -1559,22 +1559,42 @@
     if (previousFocus) previousFocus.focus();
   }
 
+ 
   document.querySelectorAll("[data-room-details]").forEach(button => {
-  button.addEventListener("click", () => {
-    const roomKey = button.dataset.roomDetails;
-    const room = rooms[roomKey];
+    button.addEventListener("click", () => {
+      const roomKey = button.dataset.roomDetails;
+      const room = rooms[roomKey];
 
-    if (typeof window.gtag === "function" && room) {
-      window.gtag("event", "room_details_view", {
-        property_name: "Hotel Indraprastha Luxuria",
-        room_name: room.title,
-        room_category: roomKey
-      });
-    }
+      if (typeof window.gtag === "function" && room) {
+        window.gtag("event", "room_details_view", {
+          property_name: "Hotel Indraprastha Luxuria",
+          room_name: room.title,
+          room_category: roomKey
+        });
+      }
 
-    openModal(roomKey, button);
+      openModal(roomKey, button);
+    });
   });
-});
+
+  // Close when the close button or backdrop is clicked
+  modal.querySelectorAll("[data-close-room-modal]").forEach(element => {
+    element.addEventListener("click", closeModal);
+  });
+
+  // Close when Escape is pressed
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+
+  // Room photo navigation
+  prev.addEventListener("click", () => showPhoto(photoIndex - 1));
+  next.addEventListener("click", () => showPhoto(photoIndex + 1));
+
+  // Close the popup when the enquiry link is clicked
+  enquireLink.addEventListener("click", closeModal);
 })();
 </script>
 
