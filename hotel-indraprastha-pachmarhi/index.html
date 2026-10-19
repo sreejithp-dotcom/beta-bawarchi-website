@@ -1658,6 +1658,35 @@
   }
 
  
+  // Track header navigation clicks
+  document.querySelectorAll(".header .nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (typeof window.gtag === "function") {
+        const text = link.textContent.trim();
+
+        if (text === "Book Now") {
+          window.gtag("event", "header_booking_click", {
+            property_name: "Hotel Indraprastha Luxuria",
+            click_text: text,
+            click_location: "header"
+          });
+        } else if (text === "Contact Us") {
+          window.gtag("event", "header_contact_click", {
+            property_name: "Hotel Indraprastha Luxuria",
+            click_text: text,
+            click_location: "header"
+          });
+        } else {
+          window.gtag("event", "header_nav_click", {
+            property_name: "Hotel Indraprastha Luxuria",
+            click_text: text,
+            click_location: "header"
+          });
+        }
+      }
+    });
+  });
+
 
     
 })();
