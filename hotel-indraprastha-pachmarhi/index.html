@@ -1560,24 +1560,21 @@
   }
 
   document.querySelectorAll("[data-room-details]").forEach(button => {
-    button.addEventListener("click", () => openModal(button.dataset.roomDetails, button));
-  });
+  button.addEventListener("click", () => {
+    const roomKey = button.dataset.roomDetails;
+    const room = rooms[roomKey];
 
-  modal.querySelectorAll("[data-close-room-modal]").forEach(element => {
-    element.addEventListener("click", closeModal);
-  });
+    if (typeof window.gtag === "function" && room) {
+      window.gtag("event", "room_details_view", {
+        property_name: "Hotel Indraprastha Luxuria",
+        room_name: room.title,
+        room_category: roomKey
+      });
+    }
 
-  prev.addEventListener("click", () => showPhoto(photoIndex - 1));
-  next.addEventListener("click", () => showPhoto(photoIndex + 1));
-  enquireLink.addEventListener("click", closeModal);
-
-  document.addEventListener("keydown", event => {
-    if (!modal.classList.contains("is-open")) return;
-    if (event.key === "Escape") closeModal();
-    if (event.key === "ArrowLeft") showPhoto(photoIndex - 1);
-    if (event.key === "ArrowRight") showPhoto(photoIndex + 1);
+    openModal(roomKey, button);
   });
-})();
+});
 </script>
 
 
