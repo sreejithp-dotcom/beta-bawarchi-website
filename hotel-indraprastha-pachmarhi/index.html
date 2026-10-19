@@ -1620,6 +1620,24 @@ document.querySelectorAll(".room-enquire-btn").forEach(button => {
     }
   });
 });
+
+
+  // Track Book Now clicks inside the room-details popup
+  const popupBookButton = modal.querySelector(".indp-room-modal__book");
+
+  if (popupBookButton) {
+    popupBookButton.addEventListener("click", () => {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "room_booking_click", {
+          property_name: "Hotel Indraprastha Luxuria",
+          room_name: title.textContent,
+          booking_method: "external_booking_engine"
+        });
+      }
+    });
+  }
+
+    
 })();
 </script>
 
