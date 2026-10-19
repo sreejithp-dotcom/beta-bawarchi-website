@@ -351,7 +351,8 @@
 
           <a
             class="room-enquire-btn"
-            href="tel:+918085055993">
+            href="tel:+918085055993"
+            data-room-name="executive-ac">
             Enquire
           </a>
         </div>
@@ -396,7 +397,8 @@
 
           <a
             class="room-enquire-btn"
-            href="tel:+918085055993">
+            href="tel:+918085055993"
+            data-room-name="executive-front">
             Enquire
           </a>
         </div>
@@ -441,7 +443,8 @@
 
           <a
             class="room-enquire-btn"
-            href="tel:+918085055993">
+            href="tel:+918085055993"
+            data-room-name="luxury-balcony">
             Enquire
           </a>
         </div>
@@ -486,7 +489,8 @@
 
           <a
             class="room-enquire-btn"
-            href="tel:+918085055993">
+            href="tel:+918085055993"
+            data-room-name="mountain-view">
             Enquire
           </a>
         </div>
@@ -531,7 +535,8 @@
 
           <a
             class="room-enquire-btn"
-            href="tel:+918085055993">
+            href="tel:+918085055993"
+            data-room-name="royale-suite">
             Enquire
           </a>
         </div>
@@ -1590,6 +1595,18 @@
 
   // Close the popup when the enquiry link is clicked
   enquireLink.addEventListener("click", closeModal);
+    // Track room-card phone enquiry clicks
+document.querySelectorAll(".room-enquire-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "room_enquiry_click", {
+        property_name: "Hotel Indraprastha Luxuria",
+        room_name: button.dataset.roomName || "Unknown",
+        enquiry_method: "phone"
+      });
+    }
+  });
+});
 })();
 </script>
 
