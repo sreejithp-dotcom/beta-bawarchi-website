@@ -1608,18 +1608,37 @@
 
   closeModal();
 });
-    // Track room-card phone enquiry clicks
-document.querySelectorAll(".room-enquire-btn").forEach(button => {
-  button.addEventListener("click", () => {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "room_enquiry_click", {
-        property_name: "Hotel Indraprastha Luxuria",
-        room_name: button.dataset.roomName || "Unknown",
-        enquiry_method: "phone"
-      });
-    }
+    
+  // Track Book Now clicks on room cards
+  document.querySelectorAll(".room-book-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "room_booking_click", {
+          property_name: "Hotel Indraprastha Luxuria",
+          room_name:
+            button.closest(".room")?.querySelector("h3")?.textContent.trim() ||
+            "Unknown",
+          booking_method: "external_booking_engine",
+          click_location: "room_card"
+        });
+      }
+    });
   });
-});
+
+  // Track Enquire clicks on room cards
+  document.querySelectorAll(".room-enquire-btn").forEach(button => {
+    button.addEventListener("click", () => {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "room_enquiry_click", {
+          property_name: "Hotel Indraprastha Luxuria",
+          room_name: button.dataset.roomName || "Unknown",
+          enquiry_method: "phone",
+          click_location: "room_card"
+        });
+      }
+    });
+  });
+
 
 
   // Track Book Now clicks inside the room-details popup
@@ -1631,11 +1650,14 @@ document.querySelectorAll(".room-enquire-btn").forEach(button => {
         window.gtag("event", "room_booking_click", {
           property_name: "Hotel Indraprastha Luxuria",
           room_name: title.textContent,
-          booking_method: "external_booking_engine"
+          booking_method: "external_booking_engine",
+          click_location: "room_details_popup"
         });
       }
     });
   }
+
+ 
 
     
 })();
