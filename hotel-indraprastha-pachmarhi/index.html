@@ -1687,6 +1687,100 @@
     });
   });
 
+  // Helper: track clicks in the remaining page sections
+  function trackSectionClicks(selector, eventName, sectionName, extraParams = {}) {
+    document.querySelectorAll(selector).forEach(link => {
+      link.addEventListener("click", () => {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", eventName, {
+            property_name: "Hotel Indraprastha Luxuria",
+            click_text: link.textContent.trim(),
+            click_location: sectionName,
+            ...extraParams
+          });
+        }
+      });
+    });
+  }
+
+  // 1. Hero section buttons
+  trackSectionClicks(
+    ".property-hero .buttons a",
+    "hero_cta_click",
+    "hero"
+  );
+
+  // 2. Explore Full Room Gallery
+  trackSectionClicks(
+    ".gallery-link-wrap a",
+    "room_gallery_click",
+    "room_gallery"
+  );
+
+  // 3. Groups and experiences links
+  trackSectionClicks(
+    ".ind-group-experiences a",
+    "group_experience_click",
+    "groups_experiences"
+  );
+
+  // 4. Phone calls in the location and contact section
+  trackSectionClicks(
+    ".location-enquiry a[href^='tel:']",
+    "contact_phone_click",
+    "location_contact"
+  );
+
+  // 5. WhatsApp links in the location and contact section
+  trackSectionClicks(
+    ".location-enquiry a[href*='wa.me']",
+    "contact_whatsapp_click",
+    "location_contact"
+  );
+
+  // 6. Google Maps directions
+  trackSectionClicks(
+    ".location-enquiry a[href*='google.com/maps/dir']",
+    "directions_click",
+    "location_contact"
+  );
+
+  // 7. Email links in the location and contact section
+  trackSectionClicks(
+    ".location-enquiry a[href^='mailto:']",
+    "contact_email_click",
+    "location_contact"
+  );
+
+  // 8. Footer WhatsApp links
+  trackSectionClicks(
+    ".footer a[href*='wa.me']",
+    "footer_whatsapp_click",
+    "footer"
+  );
+
+  // 9. Footer email links
+  trackSectionClicks(
+    ".footer a[href^='mailto:']",
+    "footer_email_click",
+    "footer"
+  );
+
+  // 10. Direct booking enquiry form submission
+  const directEnquiryForm = document.querySelector(".booking-form");
+
+  if (directEnquiryForm) {
+    directEnquiryForm.addEventListener("submit", () => {
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "direct_enquiry_submit", {
+          property_name: "Hotel Indraprastha Luxuria",
+          form_location: "location_enquiry_section",
+          enquiry_method: "whatsapp"
+        });
+      }
+    });
+  }
+
 
     
 })();
