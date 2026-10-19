@@ -1350,7 +1350,7 @@
              href="https://letsbook.me/booking/hotelindraprasthaluxuria"
              target="_blank" rel="noopener noreferrer">Book Now</a>
           <a class="indp-room-modal__enquire" id="roomModalEnquire"
-             href="#enquiry">Enquire</a>
+             href="tel:+918085055993">Enquire</a>
         </div>
       </aside>
     </div>
@@ -1594,7 +1594,20 @@
   next.addEventListener("click", () => showPhoto(photoIndex + 1));
 
   // Close the popup when the enquiry link is clicked
-  enquireLink.addEventListener("click", closeModal);
+  enquireLink.addEventListener("click", () => {
+  const roomName = enquireLink.dataset.enquireRoom || "Unknown";
+
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "room_enquiry_click", {
+      property_name: "Hotel Indraprastha Luxuria",
+      room_name: roomName,
+      enquiry_method: "phone",
+      enquiry_location: "room_details_popup"
+    });
+  }
+
+  closeModal();
+});
     // Track room-card phone enquiry clicks
 document.querySelectorAll(".room-enquire-btn").forEach(button => {
   button.addEventListener("click", () => {
